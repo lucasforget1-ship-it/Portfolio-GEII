@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BUT2 : Intégration — Portfolio GEII</title>
+<meta name="description" content="Deuxième année : électronique de puissance, automates, microcontrôleurs et stage industriel."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+:root{--bg:#0b0d10;--fg:#e7ecf2;--muted:#7c8794;--card:#11151a;--border:#1f2630;--accent:#3ac6ff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(58,198,255,.3)}
+a{color:inherit;text-decoration:none}
+.container{max-width:60rem;margin:0 auto;padding:0 1.5rem}
+nav.top{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:.75rem 1.5rem;background:rgba(11,13,16,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+nav.top a.back{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+nav.top a.back:hover{color:var(--accent)}
+nav.top .tag{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent)}
+/* ── bannière page intérieure ── */
+.page-banner{
+  position:relative;width:100%;height:260px;overflow:hidden;
+  margin-top:48px;/* compenser la nav fixe */
+}
+.page-banner img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 40%;
+  filter:brightness(.45) saturate(.7);
+}
+.page-banner::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(11,13,16,0) 0%,rgba(11,13,16,.75) 70%,rgba(11,13,16,1) 100%);
+}
+.page-banner-content{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 1.5rem 2rem;
+  max-width:60rem;margin:0 auto;left:0;right:0;z-index:2;
+}
+.page-banner .crumb-top{
+  font-family:"JetBrains Mono",monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.3em;color:var(--accent);
+  margin-bottom:.5rem;
+}
+.page-banner h1{
+  font-size:clamp(1.8rem,4vw,3rem);font-weight:800;
+  letter-spacing:-.03em;line-height:1;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+/* ── reste des styles ── */
+main{padding:2.5rem 0 5rem}
+.crumb{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--accent);margin-bottom:1.5rem}
+h1.title{font-size:clamp(2rem,5vw,3.75rem);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:1.5rem}
+.summary{font-size:1.125rem;color:var(--muted);line-height:1.6;max-width:46rem;margin-bottom:3rem}
+.meta-row{display:flex;flex-wrap:wrap;gap:1rem 2rem;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:3rem;font-family:"JetBrains Mono",monospace;font-size:11px}
+.meta-row .k{color:var(--muted);text-transform:uppercase;letter-spacing:.2em;margin-right:.5rem}
+.meta-row .v{color:var(--accent)}
+h2.h{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
+.hint{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.2em;margin-bottom:1rem}
+.modules{display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem}
+details{border:1px solid var(--border);border-radius:4px;background:rgba(17,21,26,.4);transition:border-color .2s}
+details[open]{border-color:var(--accent)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary .left{display:flex;flex-direction:column;gap:.35rem;flex:1}
+summary .name{font-size:.95rem;font-weight:500}
+summary .short{font-size:.8rem;color:var(--muted)}
+summary .right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+summary .badge{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+summary .chev{font-family:"JetBrains Mono",monospace;color:var(--accent);transition:transform .2s;font-size:14px}
+details[open]>summary .chev{transform:rotate(90deg)}
+.body{padding:1rem 1.25rem 1.25rem;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem;line-height:1.65}
+.body h4{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:1.25rem 0 .5rem}
+.body p{margin-bottom:.5rem}
+.body .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.body .tags span{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.15em;padding:.3rem .6rem;border:1px solid var(--border);border-radius:2px;color:var(--muted)}
+.video-wrap{position:relative;width:100%;aspect-ratio:16/9;margin-top:.75rem;border:1px solid var(--border);border-radius:4px;overflow:hidden;background:#000}
+.video-wrap iframe,.video-wrap video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-placeholder{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;text-align:center;padding:1rem}
+.skills{display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem}
+.skills details{border-radius:3px;background:rgba(11,13,16,.5)}
+.skills summary{padding:.65rem 1rem}
+.skills summary .name{font-size:.85rem}
+.skills .body{padding:.75rem 1rem 1rem;font-size:.85rem}
+.proj-links{display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem}
+.proj-links a{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border:1px solid var(--border);border-radius:3px;color:var(--fg);font-size:.85rem;transition:all .15s}
+.proj-links a:hover{border-color:var(--accent);color:var(--accent);background:rgba(58,198,255,.05)}
+.proj-links a .arr{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:11px}
+.proj-links .none{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;padding:.4rem 0}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.25rem;border:1px solid var(--border);border-radius:2px;font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted)}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);text-align:center}
+.rubric{margin-top:1rem;padding:1rem;border:1px solid var(--border);border-radius:3px;background:rgba(11,13,16,.4)}.rubric+.rubric{margin-top:.75rem}.rubric h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}.media-row{display:grid;grid-template-columns:minmax(140px,40%) 1fr;gap:1rem;align-items:start}.media-row.right{grid-template-columns:1fr minmax(140px,40%)}@media(max-width:560px){.media-row,.media-row.right{grid-template-columns:1fr}}.media-row img,.media-row .ph{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);border-radius:3px;background:#0b0d10;display:block}.media-row .ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;text-align:center;padding:.5rem}.media-row .txt{font-size:.85rem;line-height:1.6;color:var(--muted)}.media-row .txt p+p{margin-top:.5rem}
+</style>
+</head>
+<body>
+<div id="toast">✓ Copié !</div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="progress-bar"></div>
+<nav class="top"><span class="tag">Portfolio_GEII</span><a class="back" href="index.html">← Retour</a></nav>
+
+<div class="page-banner">
+  <img src="banner.jpg" alt="" onerror="this.style.display='none'">
+  <div class="page-banner-content container">
+    <div class="crumb-top">Module_Viewer / NIVEAU_02</div>
+    <h1>BUT2 : Intégration</h1>
+  </div>
+</div>
+<main class="container">
+<p class="summary reveal">Deuxième année : électronique de puissance, automates, microcontrôleurs et premier stage industriel.</p>
+<div class="meta-row reveal"><div><span class="k">Niveau</span><span class="v">NIVEAU_02</span></div><div><span class="k">Période</span><span class="v">2023 — 2024</span></div></div>
+<h2 class="h reveal">_Modules suivis</h2>
+<p class="hint">› Cliquez sur un module pour déplier — puis sur une compétence pour voir les projets liés</p>
+<div class="modules reveal"><details><summary>
+<div class="left"><div class="name">Électronique de puissance</div><div class="short">Hacheurs, onduleurs, MOSFET/IGBT.</div></div>
+<div class="right"><span class="badge">[x]</span><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Conversion d'énergie : hacheurs série/parallèle, onduleurs, commande de transistors de puissance.</p>
+<h4>_Vidéo de démonstration</h4>
+<div class="video-wrap"><div class="video-placeholder">[ Emplacement vidéo — collez une URL YouTube/Vimeo ou un &lt;video src&gt; ]</div></div>
+<h4>_Notes & contexte</h4>
+<p>Espace libre pour ajouter des notes, retours d'expérience ou documentation complémentaire sur ce module.</p>
+<h4>_Compétences (cliquez pour déplier)</h4>
+<div class="skills"><details><summary>
+<div class="left"><div class="name">Hacheurs DC/DC</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Buck, boost, buck-boost, calcul de l'inductance et du filtrage.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-amplifier.html"><span>Amplificateur Classe D</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Commande MOSFET</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Drivers, temps mort, dissipation thermique.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-amplifier.html"><span>Amplificateur Classe D</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Onduleurs MLI</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Modulation de largeur d'impulsion pour la commande de moteurs.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
+</div></details></div>
+<h4>_Outils & technos</h4>
+<div class="tags"><span>LTspice</span><span>PSIM</span><span>MOSFET</span><span>IGBT</span></div>
+</div></details><details><summary>
+<div class="left"><div class="name">LabView & capteurs</div><div class="short">Acquisition, conditionnement, instrumentation.</div></div>
+<div class="right"><span class="badge">[x]</span><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Acquisition de mesures, conditionnement analogique de capteurs, programmation graphique LabView.</p>
+<h4>_Vidéo de démonstration</h4>
+<div class="video-wrap"><div class="video-placeholder">[ Emplacement vidéo — collez une URL YouTube/Vimeo ou un &lt;video src&gt; ]</div></div>
+<h4>_Notes & contexte</h4>
+<p>Espace libre pour ajouter des notes, retours d'expérience ou documentation complémentaire sur ce module.</p>
+<h4>_Compétences (cliquez pour déplier)</h4>
+<div class="skills"><details><summary>
+<div class="left"><div class="name">Conditionnement de capteurs</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Amplification, filtrage, mise à l'échelle de capteurs analogiques.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a><a href="project-iot-monitor.html"><span>Supervision IoT Industrielle</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Programmation LabView</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>VIs, structures, acquisition NI-DAQ.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
+</div></details></div>
+<h4>_Outils & technos</h4>
+<div class="tags"><span>LabView</span><span>NI-DAQ</span><span>Capteurs IR</span><span>Jauges</span></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Microcontrôleurs</div><div class="short">STM32, périphériques, interruptions.</div></div>
+<div class="right"><span class="badge">[x]</span><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Programmation bas niveau sur STM32 : timers, ADC, UART, SPI, interruptions.</p>
+<h4>_Vidéo de démonstration</h4>
+<div class="video-wrap"><div class="video-placeholder">[ Emplacement vidéo — collez une URL YouTube/Vimeo ou un &lt;video src&gt; ]</div></div>
+<h4>_Notes & contexte</h4>
+<p>Espace libre pour ajouter des notes, retours d'expérience ou documentation complémentaire sur ce module.</p>
+<h4>_Compétences (cliquez pour déplier)</h4>
+<div class="skills"><details><summary>
+<div class="left"><div class="name">Timers & PWM</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Génération de signaux PWM précis pour la commande moteur.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name">ADC & acquisition</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Conversion analogique-numérique multi-canaux.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Communication série</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>UART, SPI, I2C pour interfacer capteurs et modules.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-iot-monitor.html"><span>Supervision IoT Industrielle</span><span class="arr">Voir →</span></a></div>
+</div></details></div>
+<h4>_Outils & technos</h4>
+<div class="tags"><span>STM32CubeIDE</span><span>HAL</span><span>C</span><span>ST-Link</span></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Stage industriel</div><div class="short">Première immersion en entreprise.</div></div>
+<div class="right"><span class="badge">[x]</span><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Stage de 8 semaines en milieu industriel : intégration en équipe, méthodologie projet, livrables.</p>
+<h4>_Vidéo de démonstration</h4>
+<div class="video-wrap"><div class="video-placeholder">[ Emplacement vidéo — collez une URL YouTube/Vimeo ou un &lt;video src&gt; ]</div></div>
+<h4>_Notes & contexte</h4>
+<p>Espace libre pour ajouter des notes, retours d'expérience ou documentation complémentaire sur ce module.</p>
+<h4>_Compétences (cliquez pour déplier)</h4>
+<div class="skills"><details><summary>
+<div class="left"><div class="name">Méthodologie projet</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Cahier des charges, planning, revues techniques.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Travail en équipe</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Communication, reporting, collaboration multidisciplinaire.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
+</div></details></div>
+<h4>_Outils & technos</h4>
+<div class="tags"><span>Git</span><span>Jira</span><span>Documentation</span><span>Soft skills</span></div>
+</div></details></div>
+<a class="back-link reveal" href="index.html">← Retour au portfolio</a></main>
+<footer>© 2026 / Portfolio_GEII</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

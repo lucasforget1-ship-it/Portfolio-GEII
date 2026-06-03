@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lucas Forget — Portfolio GEII</title>
+<meta name="description" content="Portfolio BUT GEII : systèmes embarqués, électronique de puissance et automatisme industrielle." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+:root{
+  --bg:#0b0d10;--fg:#e7ecf2;--muted:#7c8794;--card:#11151a;
+  --border:#1f2630;--accent:#3ac6ff;--accent-fg:#04131c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(58,198,255,.3)}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.container{max-width:72rem;margin:0 auto;padding:0 1.5rem}
+
+/* ── Nav ── */
+nav.top{
+  position:fixed;top:0;left:0;right:0;z-index:40;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.75rem 1.5rem;
+  background:rgba(11,13,16,.0);backdrop-filter:blur(0px);
+  border-bottom:1px solid transparent;
+  transition:background .4s,backdrop-filter .4s,border-color .4s;
+}
+nav.top.scrolled{background:rgba(11,13,16,.88);backdrop-filter:blur(12px);border-color:var(--border)}
+nav.top .left{display:flex;align-items:center;gap:.75rem}
+nav.top .dot{width:6px;height:6px;border-radius:999px;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+nav.top .links{display:flex;gap:1.5rem}
+nav.top .links a{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);position:relative}
+nav.top .links a::after{content:"";position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent);transition:width .25s}
+nav.top .links a:hover{color:var(--accent)}
+nav.top .links a:hover::after{width:100%}
+.tag{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent)}
+
+/* ══════════════════════════════════
+   BANNIÈRE HERO
+══════════════════════════════════ */
+.hero-banner{
+  position:relative;
+  width:100%;
+  height:100vh;
+  min-height:520px;
+  max-height:860px;
+  overflow:hidden;
+  margin-bottom:0;
+}
+.hero-banner img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 30%;
+  filter:brightness(.55) saturate(.8);
+  transition:transform 8s ease;
+}
+.hero-banner:hover img{transform:scale(1.03)}
+/* dégradé bas vers la couleur de fond */
+.hero-banner::after{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,
+      rgba(11,13,16,0) 0%,
+      rgba(11,13,16,0) 40%,
+      rgba(11,13,16,.7) 70%,
+      rgba(11,13,16,1) 100%
+    ),
+    linear-gradient(to right,
+      rgba(11,13,16,.3) 0%,
+      transparent 60%
+    );
+}
+.hero-banner-content{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:0 1.5rem 4rem;
+  max-width:72rem;
+  margin:0 auto;
+  left:0;right:0;
+  z-index:2;
+}
+.hero-banner .badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.25rem .75rem;border:1px solid rgba(58,198,255,.35);
+  border-radius:999px;background:rgba(17,21,26,.5);
+  backdrop-filter:blur(6px);
+  margin-bottom:1.5rem;width:fit-content;
+}
+.hero-banner .badge .d{width:6px;height:6px;border-radius:999px;background:var(--accent)}
+.hero-banner .badge span{font-size:10px;color:var(--muted);letter-spacing:.1em}
+h1.hero{
+  font-size:clamp(2.8rem,8vw,6.5rem);
+  font-weight:800;letter-spacing:-.04em;line-height:.92;
+  margin-bottom:2rem;
+  text-shadow:0 2px 30px rgba(0,0,0,.4);
+}
+h1.hero .dim{color:rgba(231,236,242,.55)}
+/* glitch sur le nom */
+h1.hero .dim{position:relative;display:inline-block}
+h1.hero .dim::before,h1.hero .dim::after{
+  content:attr(data-text);position:absolute;left:0;top:0;
+  color:rgba(231,236,242,.55);
+}
+h1.hero .dim::before{animation:glitch-top 7s infinite 3s;left:2px;text-shadow:-1px 0 var(--accent)}
+h1.hero .dim::after{animation:glitch-bot 7s infinite 3.5s;left:-2px;text-shadow:1px 0 rgba(255,80,80,.4);clip-path:polygon(0 50%,100% 50%,100% 100%,0 100%)}
+@keyframes glitch-top{0%,92%,100%{transform:translateX(0);opacity:0}93%{transform:translateX(-3px);opacity:.7}95%{transform:translateX(2px);opacity:.5}97%{transform:translateX(0);opacity:0}}
+@keyframes glitch-bot{0%,94%,100%{transform:translateX(0);opacity:0}95%{transform:translateX(3px);opacity:.6}97%{transform:translateX(-2px);opacity:.4}99%{transform:translateX(0);opacity:0}}
+
+.hero-banner-bottom{
+  display:flex;flex-wrap:wrap;gap:1.5rem 3rem;align-items:flex-end;justify-content:space-between;
+}
+.bio{max-width:36rem;color:rgba(231,236,242,.7);font-size:1.05rem;line-height:1.6}
+dl.stats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;font-size:12px}
+dl.stats>div{border-left:1px solid var(--border);padding-left:.75rem}
+dl.stats .acc{border-color:var(--accent)}
+dl.stats dt{color:var(--muted);text-transform:uppercase;letter-spacing:.2em;font-size:10px;margin-bottom:.2rem}
+/* flèche scroll-down */
+.scroll-hint{
+  position:absolute;bottom:1.75rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  color:rgba(124,135,148,.6);
+  font-family:"JetBrains Mono",monospace;font-size:9px;text-transform:uppercase;letter-spacing:.2em;
+  animation:bounce 2.5s ease-in-out infinite;
+  z-index:3;
+}
+.scroll-hint svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.5;fill:none}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* ── Sections ── */
+main{padding:0}
+section.inner{margin-bottom:8rem;padding-top:7rem}
+section.inner:first-of-type{padding-top:5rem}
+
+/* ── Section heading ── */
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:2.5rem}
+.section-head .lbl{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+.section-head .meta{font-size:10px;color:var(--muted);text-transform:uppercase}
+
+/* ── Compteurs ── */
+.counters{display:flex;flex-wrap:wrap;gap:1.5rem;padding:1.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:3rem}
+.counter-item{flex:1;min-width:120px;text-align:center}
+.counter-val{font-size:clamp(1.75rem,4vw,3rem);font-weight:800;letter-spacing:-.04em;color:var(--accent);font-family:"JetBrains Mono",monospace}
+.counter-val .plus{color:var(--muted);font-size:.7em}
+.counter-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-top:.3rem}
+
+/* ── Timeline ── */
+.tl-wrap{position:relative}
+.tl-rail{position:absolute;left:0;right:0;top:42px;height:1px;background:var(--border)}
+.tl-scroll{overflow-x:auto;padding-bottom:1rem;margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem;scroll-snap-type:x mandatory}
+.tl{display:flex;gap:1.5rem;min-width:max-content;list-style:none}
+.tl li{width:280px;flex-shrink:0;scroll-snap-align:start}
+.tl .year{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.2em;margin-bottom:.75rem}
+.tl .year .n{color:var(--accent);margin-right:.5rem}
+.tl .dot-row{height:16px;display:flex;align-items:center}
+.tl .dot{width:12px;height:12px;border-radius:999px;background:var(--border);border:4px solid var(--bg)}
+.tl .dot.cur{background:var(--accent);box-shadow:0 0 0 6px rgba(58,198,255,.15),0 0 12px rgba(58,198,255,.2)}
+.tl .card{margin-top:1rem;padding:1.25rem;border:1px solid var(--border);border-radius:6px;background:rgba(17,21,26,.4);transition:border-color .2s,transform .2s;display:block;color:inherit}
+.tl .card:hover{border-color:rgba(58,198,255,.45);transform:translateY(-2px)}
+.tl h3{font-size:1rem;margin-bottom:.5rem}
+.tl p{color:var(--muted);font-size:.875rem;line-height:1.5}
+.tl-open{display:block;margin-top:.75rem;font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);opacity:0;transition:opacity .2s}
+.tl .card:hover .tl-open{opacity:1}
+
+/* ── BUT ── */
+.but{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.but-head{display:flex;justify-content:space-between;padding:.75rem 1.5rem;background:rgba(17,21,26,.6);border-bottom:1px solid var(--border)}
+.but-head .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent)}
+.but-head .r{font-size:10px;text-transform:uppercase;color:var(--muted)}
+.but-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+@media(max-width:768px){.but-grid{grid-template-columns:1fr}}
+.but-cell{padding:2rem;border-right:1px solid var(--border)}
+.but-cell:last-child{border-right:none}
+@media(max-width:768px){.but-cell{border-right:none;border-bottom:1px solid var(--border)}}
+.but-cell .lvl{font-size:10px;letter-spacing:.2em;color:var(--muted);display:block;margin-bottom:1rem}
+.but-cell.active .lvl{color:var(--accent)}
+.but-cell h4{font-size:1.125rem;margin-bottom:1.25rem}
+.but-cell ul{list-style:none;font-size:11px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.but-cell li{display:flex;gap:.5rem;margin-bottom:.5rem}
+.but-cell li::before{content:"[x]";color:rgba(58,198,255,.7)}
+a.but-cell{color:inherit;display:block;transition:background .2s}
+a.but-cell:hover{background:rgba(58,198,255,.04)}
+a.but-cell:hover h4{color:var(--accent)}
+.but-cell .open{display:block;margin-top:1rem;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-family:"JetBrains Mono",monospace}
+
+/* ── Projets ── */
+h2.big{font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-.03em;font-style:italic}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.proj-grid{grid-template-columns:1fr}}
+.proj{display:block;cursor:pointer}
+.proj .img{aspect-ratio:4/5;background:var(--card);border:1px solid var(--border);border-radius:2px;overflow:hidden;position:relative}
+.proj:hover .img{border-color:rgba(58,198,255,.5)}
+.proj .img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.proj:hover .img img{transform:scale(1.07)}
+.proj .img-overlay{position:absolute;inset:0;background:rgba(11,13,16,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);backdrop-filter:blur(2px)}
+.proj:hover .img-overlay{opacity:1}
+.proj .info{margin-top:1rem;display:flex;justify-content:space-between;gap:1rem}
+.proj h5{font-weight:700}
+.proj:hover h5{color:var(--accent)}
+.proj .t{font-size:.75rem;color:var(--muted);font-family:"JetBrains Mono",monospace;margin-top:.25rem}
+.proj .y{font-size:10px;color:var(--muted);font-family:"JetBrains Mono",monospace;flex-shrink:0}
+.proj .sum{margin-top:.5rem;font-size:.8rem;color:var(--muted);line-height:1.5}
+.proj .stack{margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.25rem}
+.proj .stack span{font-size:9px;padding:.15rem .4rem;border:1px solid var(--border);border-radius:2px;color:var(--muted);font-family:"JetBrains Mono",monospace;transition:border-color .2s,color .2s}
+.proj:hover .stack span{border-color:rgba(58,198,255,.25);color:rgba(58,198,255,.8)}
+
+/* ── Lightbox ── */
+#lightbox{display:none;position:fixed;inset:0;z-index:200;background:rgba(7,9,12,.93);backdrop-filter:blur(8px);align-items:center;justify-content:center;cursor:zoom-out}
+#lightbox.open{display:flex}
+#lightbox img{max-width:min(90vw,1000px);max-height:85vh;object-fit:contain;border:1px solid var(--border);border-radius:4px;animation:lb-in .3s cubic-bezier(.16,1,.3,1)}
+@keyframes lb-in{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+#lightbox .lb-close{position:absolute;top:1.5rem;right:1.5rem;font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);padding:.5rem .75rem;border:1px solid var(--border);border-radius:2px;cursor:pointer;background:rgba(17,21,26,.8)}
+#lightbox .lb-close:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ── Footer ── */
+footer{border-top:1px solid var(--border);padding:5rem 1.5rem 2rem;margin-top:3rem}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr;gap:3rem;margin-bottom:3rem}
+@media(max-width:768px){.foot-grid{grid-template-columns:1fr}}
+footer h2{font-size:clamp(2rem,5vw,4rem);font-weight:800;letter-spacing:-.03em;margin-bottom:2rem}
+footer h2 .dim{color:var(--muted)}
+.contact-list{display:flex;flex-direction:column;gap:.75rem;font-family:"JetBrains Mono",monospace;font-size:.875rem}
+.contact-list a,.contact-list span{color:var(--accent);transition:opacity .2s;cursor:pointer}
+.contact-list a:hover,.contact-list span:hover{opacity:.7}
+.socials{display:flex;flex-direction:column;gap:.75rem;align-items:flex-end}
+@media(max-width:768px){.socials{flex-direction:row;align-items:flex-start;flex-wrap:wrap}}
+.socials a{padding:.5rem .75rem;border:1px solid var(--border);border-radius:2px;font-size:11px;text-transform:uppercase;letter-spacing:.2em;font-family:"JetBrains Mono",monospace;transition:border-color .2s,color .2s}
+.socials a:hover{border-color:rgba(58,198,255,.4);color:var(--accent)}
+.cv-card{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;padding:1.5rem;border:1px solid var(--border);border-radius:8px;background:rgba(17,21,26,.4);margin-bottom:2rem}
+@media(max-width:768px){.cv-card{flex-direction:column;align-items:flex-start}}
+.cv-card h3{font-size:1.25rem;margin-top:.5rem}
+.cv-card p{font-size:.875rem;color:var(--muted);margin-top:.25rem}
+.cv-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;background:var(--accent);color:var(--accent-fg);border-radius:2px;font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;font-weight:600;transition:opacity .2s,box-shadow .2s}
+.cv-btn:hover{opacity:.88;box-shadow:0 0 20px rgba(58,198,255,.3)}
+.copy{display:flex;justify-content:space-between;padding-top:2rem;border-top:1px solid var(--border);font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted)}
+@media(max-width:768px){.copy{flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+
+<!-- Toast copie -->
+<div id="toast">✓ Copié !</div>
+
+<!-- Cursor discret -->
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Barre de lecture -->
+<div id="progress-bar"></div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button class="lb-close" id="lbClose">✕ Fermer</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<nav class="top" id="topNav">
+  <div class="left">
+    <div class="dot"></div>
+    <span class="mono tag" style="font-size:11px">Lucas_Forget</span>
+  </div>
+  <div class="links mono">
+    <a href="#chronologie">Parcours</a>
+    <a href="#but">BUT</a>
+    <a href="#projets">Projets</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ══ BANNIÈRE HERO ══ -->
+<div class="hero-banner">
+  <!-- Remplace "banner.jpg" par ton image (photo labo, carte élec, etc.) -->
+  <img src="banner.jpg" alt="Bannière" onerror="this.style.background='linear-gradient(135deg,#0d1117 0%,#11151a 50%,#0b1520 100%);this.style.display=&quot;block&quot;'">
+  <div class="hero-banner-content container">
+    <div class="badge reveal"><span class="d"></span><span class="mono">Génie Électrique &amp; Informatique Industrielle</span></div>
+    <h1 class="hero reveal reveal-d1">Portfolio<br><span class="dim" data-text="Lucas Forget">Lucas Forget</span></h1>
+    <div class="hero-banner-bottom">
+      <p class="bio reveal reveal-d2">Étudiant en BUT GEII à l'IUT de Rennes, passionné par les systèmes embarqués, l'électronique de puissance et l'automatisme. Curieux et motivé, je construis chaque jour de nouvelles compétences.</p>
+      <dl class="stats mono reveal reveal-d3">
+        <div><dt>Localisation</dt><dd>Rennes, France</dd></div>
+        <div class="acc"><dt>Statut</dt><dd style="color:var(--accent)">Formation Initiale</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    <span>Défiler</span>
+  </div>
+</div>
+
+<main class="container">
+
+  <!-- ── COMPTEURS ── -->
+  <section class="inner">
+    <div class="counters reveal" id="counters">
+      <div class="counter-item">
+        <div class="counter-val mono" data-target="4"><span class="num">0</span><span class="plus">+</span></div>
+        <div class="counter-lbl mono">Projets réalisés</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val mono" data-target="3"><span class="num">0</span></div>
+        <div class="counter-lbl mono">Années de BUT</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val mono" data-target="5"><span class="num">0</span></div>
+        <div class="counter-lbl mono">Langages maîtrisés</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val mono" data-target="2"><span class="num">0</span></div>
+        <div class="counter-lbl mono">Stages effectués</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CHRONOLOGIE ── -->
+  <section class="inner" id="chronologie">
+    <div class="section-head reveal">
+      <h2 class="mono lbl">_Chronologie</h2>
+      <span class="mono meta">04 étapes · faire défiler →</span>
+    </div>
+    <div class="tl-wrap reveal">
+      <div class="tl-rail"></div>
+      <div class="tl-scroll">
+        <ol class="tl">
+          <li>
+            <div class="year mono"><span class="n">01</span>2022 — 2025</div>
+            <div class="dot-row"><div class="dot"></div></div>
+            <div class="card"><h3>Baccalauréat STI2D</h3><p>LPO Curie-Corot — Saint-Lô. Spécialité Énergie &amp; Environnement.</p></div>
+          </li>
+          <li>
+            <div class="year mono"><span class="n">02</span>2025 — 2026</div>
+            <div class="dot-row"><div class="dot cur"></div></div>
+            <a class="card" href="but1.html"><h3>BUT1 — Fondations</h3><p>Électronique analogique, traitement du signal, programmation C.</p><span class="tl-open">Ouvrir →</span></a>
+          </li>
+          <li>
+            <div class="year mono"><span class="n">03</span>2026 — 2027</div>
+            <div class="dot-row"><div class="dot"></div></div>
+            <a class="card" href="but2.html"><h3>BUT2 — Spécialité AII</h3><p>À venir...</p><span class="tl-open">Ouvrir →</span></a>
+          </li>
+          <li>
+            <div class="year mono"><span class="n">04</span>2027 — 2028</div>
+            <div class="dot-row"><div class="dot"></div></div>
+            <a class="card" href="but3.html"><h3>BUT3 — Spécialité AII</h3><p>À venir...</p><span class="tl-open">Ouvrir →</span></a>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BUT ── -->
+  <section class="inner" id="but">
+    <div class="reveal">
+      <div class="but">
+        <div class="but-head"><span class="mono lbl">Module_Viewer / BUT GEII</span><span class="mono r">03_NIVEAUX</span></div>
+        <div class="but-grid">
+          <a class="but-cell" href="but1.html"><span class="lvl mono">NIVEAU_01</span><h4>BUT1 : Fondamentaux</h4>
+            <ul><li>Concevoir</li><li>Vérifier</li></ul>
+            <span class="open">Ouvrir →</span>
+          </a>
+          <a class="but-cell active" href="but2.html"><span class="lvl mono">NIVEAU_02</span><h4>BUT2 : Spécialisation</h4>
+            <ul><li>Concevoir</li><li>Vérifier</li><li>Maintenir</li><li>Intégrer</li></ul>
+            <span class="open">Ouvrir →</span>
+          </a>
+          <a class="but-cell" href="but3.html"><span class="lvl mono">NIVEAU_03</span><h4>BUT3 : Approfondissement</h4>
+            <ul><li>Concevoir</li><li>Vérifier</li><li>Maintenir</li><li>Intégrer</li></ul>
+            <span class="open">Ouvrir →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJETS ── -->
+  <section class="inner" id="projets">
+    <div class="section-head reveal" style="align-items:flex-end">
+      <h2 class="big">Projets_Conçus</h2>
+      <span class="mono meta">Total : 04</span>
+    </div>
+    <div class="proj-grid">
+      <a class="proj reveal reveal-d1" href="variateur-lumiere.html">
+        <div class="img">
+          <img src="variateur-lumiere.png" alt="Variateur de lumière" onerror="this.style.display='none'" data-lightbox>
+          <div class="img-overlay">Voir le projet →</div>
+        </div>
+        <div class="info"><div><h5>Variateur de lumière</h5><p class="t">MCP6022 / MCP6541 / Capteurs IR</p></div><span class="y">2025</span></div>
+        <p class="sum">Carte électronique avec récepteur infrarouge pour réguler la luminosité d'une ampoule LED.</p>
+        <div class="stack"><span>IR</span><span>C</span><span>PID</span><span>PWM</span><span>Altium</span></div>
+      </a>
+      <a class="proj reveal reveal-d2" href="borne-recharge.html">
+        <div class="img">
+          <img src="borne-recharge.png" alt="Borne de Recharge" onerror="this.style.display='none'" data-lightbox>
+          <div class="img-overlay">Voir le projet →</div>
+        </div>
+        <div class="info"><div><h5>Borne de recharge électrique</h5><p class="t">Raspberry Pi Pico / Relais</p></div><span class="y">2025</span></div>
+        <p class="sum">Simulation d'une borne de recharge de voiture électrique avec gestion de la sécurité.</p>
+        <div class="stack"><span>KiCad</span><span>MicroPython</span><span>Relais</span></div>
+      </a>
+      <a class="proj reveal reveal-d3" href="console-retro.html">
+        <div class="img">
+          <img src="console-retro.png" alt="Console de jeu" onerror="this.style.display='none'" data-lightbox>
+          <div class="img-overlay">Voir le projet →</div>
+        </div>
+        <div class="info"><div><h5>Console de jeu rétrogaming</h5><p class="t">Proteus / Python / Raspberry Pi Pico</p></div><span class="y">2025</span></div>
+        <p class="sum">Console avec affichage OLED et sortie son, jeux en CircuitPython.</p>
+        <div class="stack"><span>Raspberry Pi Pico</span><span>CircuitPython</span><span>OLED</span></div>
+      </a>
+      <a class="proj reveal reveal-d1" href="feu-tricolore.html">
+        <div class="img">
+          <img src="feu-tricolore.jpg" alt="Feu tricolore" onerror="this.style.display='none'" data-lightbox>
+          <div class="img-overlay">Voir le projet →</div>
+        </div>
+        <div class="info"><div><h5>Contrôle de feu tricolore</h5><p class="t">GRAFCET / Ladder / API</p></div><span class="y">2025</span></div>
+        <p class="sum">Automatisation d'un feu de circulation avec gestion des cycles via automate programmable.</p>
+        <div class="stack"><span>GRAFCET</span><span>Ladder</span><span>API</span></div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="reveal">
+        <span class="mono tag" style="letter-spacing:.3em;display:block;margin-bottom:1.5rem">_Fin_De_Transmission</span>
+        <h2>Construisons<br><span class="dim">quelque chose de concret.</span></h2>
+        <div class="contact-list">
+          <span id="copyEmail" title="Cliquer pour copier">✉ lucas.forget1@gmail.com</span>
+          <a href="tel:+33626992871">☎ +33 6 26 99 28 71</a>
+        </div>
+      </div>
+      <div class="socials reveal reveal-d2">
+        <a href="#">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-forget-/" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/llucas.frg/ target="_blank">Instagram</a>
+        <a href="mailto:lucas.forget1@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="cv-card reveal">
+      <div>
+        <span class="mono tag">_Dossier_Joint</span>
+        <h3>Télécharger mon CV</h3>
+        <p>Version PDF · français · mise à jour 2026</p>
+      </div>
+      <a class="cv-btn" href="cv.pdf" download>⬇ CV.pdf</a>
+    </div>
+    <div class="copy mono">
+      <p>© 2026 / Portfolio_GEII</p>
+      <p>Lucas_Forget · Rennes</p>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
