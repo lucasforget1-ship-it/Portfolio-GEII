@@ -94,6 +94,34 @@ details[open]>summary .chev{transform:rotate(90deg)}
 .back-link:hover{border-color:var(--accent);color:var(--accent)}
 footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);text-align:center}
 .rubric{margin-top:1rem;padding:1rem;border:1px solid var(--border);border-radius:3px;background:rgba(11,13,16,.4)}.rubric+.rubric{margin-top:.75rem}.rubric h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}.media-row{display:grid;grid-template-columns:minmax(140px,40%) 1fr;gap:1rem;align-items:start}.media-row.right{grid-template-columns:1fr minmax(140px,40%)}@media(max-width:560px){.media-row,.media-row.right{grid-template-columns:1fr}}.media-row img,.media-row .ph{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);border-radius:3px;background:#0b0d10;display:block}.media-row .ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;text-align:center;padding:.5rem}.media-row .txt{font-size:.85rem;line-height:1.6;color:var(--muted)}.media-row .txt p+p{margin-top:.5rem}
+
+/* ══ BARRE 5 POINTS PAR RUBRIQUE ═════════════
+   Placer dans chaque .rubric :
+   <div class="score-bar" data-score="3.5"></div>
+   0 à 5, les .5 sont des demi-points
+══════════════════════════════════════════════ */
+.score-bar{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:1rem;
+  padding-top:.8rem;
+  border-top:1px solid rgba(31,38,48,.9);
+}
+.score-bar-label{
+  font-family:"JetBrains Mono",monospace;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:rgba(58,198,255,.55);
+  flex-shrink:0;
+  margin-right:3px;
+}
+.score-bar svg{
+  display:block;
+  flex-shrink:0;
+  overflow:visible;
+}
 </style>
 </head>
 <body>
@@ -106,11 +134,11 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
   <img src="banner.jpg" alt="" onerror="this.style.display='none'">
   <div class="page-banner-content container">
     <div class="crumb-top">Module_Viewer / NIVEAU_01</div>
-    <h1>BUT1 : Fondations</h1>
+    <h1>BUT1 : Fondamentaux</h1>
   </div>
 </div>
 <main class="container">
-<p class="summary reveal">Première année du BUT GEII : acquisition des fondamentaux en électronique, Programmation (Python,Automatisme) et mathématiques.</p>
+<p class="summary reveal">Première année du BUT GEII : acquisition des fondamentaux en électronique, Programmation (Python,ST,LD,...) et mathématiques.</p>
 <div class="meta-row reveal"><div><span class="k">Niveau</span><span class="v">NIVEAU_01</span></div><div><span class="k">Période</span><span class="v">2025 — 2026</span></div></div>
 <h2 class="h reveal">_Modules suivis</h2>
 <p class="hint">› Cliquez sur un module pour déplier — puis sur une compétence pour voir les projets liés</p>
@@ -128,28 +156,28 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Conception et analyse de montages inverseur, non-inverseur, sommateur, dérivateur.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="4"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><a href="project-amplifier.html"><span>Amplificateur Classe D</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
 <div class="left"><div class="name"> Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Filtres passifs et actifs, calcul de fréquence de coupure et de gain.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><a href="project-amplifier.html"><span>Amplificateur Classe D</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
 <div class="left"><div class="name">Mesure et instrumentation</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Utilisation de l'oscilloscope, du GBF et du multimètre en laboratoire.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
 </div></details><details><summary>
 <div class="left"><div class="name">Mesure et instrumentation</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Utilisation de l'oscilloscope, du GBF et du multimètre en laboratoire.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
 </div></details></div>
 <h4>_Outils & technos</h4>
@@ -169,21 +197,21 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Maîtrise des pointeurs, malloc/free, gestion fine de la mémoire.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
 <div class="left"><div class="name">Structures de données</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Structs, unions, énumérations, listes chaînées.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
 <div class="left"><div class="name">Programmation Arduino</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Premiers programmes embarqués sur ATmega.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
 </div></details></div>
 <h4>_Outils & technos</h4>
@@ -193,5 +221,65 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 <footer>© 2026 / Portfolio_GEII</footer>
 
 <script src="shared.js"></script>
+<script>
+document.querySelectorAll('.score-bar[data-score]').forEach(el => {
+  const raw = parseFloat(el.dataset.score)||0;
+  const val = Math.min(5,Math.max(0,raw));
+  const R=7, S=R*2+6, C=S/2;
+  const FULL='#3ac6ff', STROKE='rgba(58,198,255,.28)';
+
+  const lbl = document.createElement('span');
+  lbl.className = 'score-bar-label';
+  lbl.textContent = 'Maîtrise de la compètences :';
+  el.appendChild(lbl);
+
+  for(let i=1;i<=5;i++){
+    const diff = val-(i-1);
+    const state = diff>=1 ? 'full' : diff>0 ? 'half' : 'empty';
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns,'svg');
+    svg.setAttribute('width',S); svg.setAttribute('height',S);
+    svg.setAttribute('viewBox',`0 0 ${S} ${S}`);
+
+    if(state==='empty'){
+      const c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',C);c.setAttribute('cy',C);c.setAttribute('r',R);
+      c.setAttribute('fill','none');c.setAttribute('stroke',STROKE);c.setAttribute('stroke-width','1.5');
+      svg.appendChild(c);
+    } else if(state==='full'){
+      const uid='gf'+Math.random().toString(36).slice(2,6);
+      const defs=document.createElementNS(ns,'defs');
+      defs.innerHTML=`<filter id="${uid}" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>`;
+      svg.appendChild(defs);
+      const c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',C);c.setAttribute('cy',C);c.setAttribute('r',R);
+      c.setAttribute('fill',FULL); c.setAttribute('filter',`url(#${uid})`);
+      svg.appendChild(c);
+    } else {
+      const cid='hc'+Math.random().toString(36).slice(2,6);
+      const uid='hg'+Math.random().toString(36).slice(2,6);
+      const defs=document.createElementNS(ns,'defs');
+      defs.innerHTML=`<clipPath id="${cid}"><rect x="0" y="0" width="${C}" height="${S}"/></clipPath>
+        <filter id="${uid}" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>`;
+      svg.appendChild(defs);
+      const bg=document.createElementNS(ns,'circle');
+      bg.setAttribute('cx',C);bg.setAttribute('cy',C);bg.setAttribute('r',R);
+      bg.setAttribute('fill','none');bg.setAttribute('stroke',STROKE);bg.setAttribute('stroke-width','1.5');
+      svg.appendChild(bg);
+      const h=document.createElementNS(ns,'circle');
+      h.setAttribute('cx',C);h.setAttribute('cy',C);h.setAttribute('r',R);
+      h.setAttribute('fill',FULL);h.setAttribute('clip-path',`url(#${cid})`);h.setAttribute('filter',`url(#${uid})`);
+      svg.appendChild(h);
+    }
+    el.appendChild(svg);
+  }
+});
+</script>
 </body>
 </html>

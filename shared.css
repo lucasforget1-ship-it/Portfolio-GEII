@@ -54,6 +54,39 @@ body:has(button:hover) .cursor-ring{
 .reveal-d3{transition-delay:.24s}
 .reveal-d4{transition-delay:.32s}
 
+/* ══════════════════════════════════
+   BARRE D'ÉVALUATION 5 POINTS
+   Usage : <span data-score="3.5"></span>
+   Valeurs : 0 · 0.5 · 1 · 1.5 … 5
+   Le JS génère des SVG : plein / demi / vide
+══════════════════════════════════ */
+.score{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+}
+/* chaque point est un SVG injecté par JS */
+.score svg{
+  display:block;
+  flex-shrink:0;
+  overflow:visible;
+}
+/* ligne complète : label + score côte à côte */
+.score-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:.65rem 0;
+  border-bottom:1px solid rgba(31,38,48,.8);
+}
+.score-row:last-child{border-bottom:none}
+.score-row .score-label{
+  font-size:.875rem;
+  color:var(--muted,#7c8794);
+  flex:1;
+}
+
 /* ── Toast copie ── */
 #toast{
   position:fixed;bottom:2rem;left:50%;
