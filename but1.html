@@ -96,16 +96,14 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 .rubric{margin-top:1rem;padding:1rem;border:1px solid var(--border);border-radius:3px;background:rgba(11,13,16,.4)}.rubric+.rubric{margin-top:.75rem}.rubric h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}.media-row{display:grid;grid-template-columns:minmax(140px,40%) 1fr;gap:1rem;align-items:start}.media-row.right{grid-template-columns:1fr minmax(140px,40%)}@media(max-width:560px){.media-row,.media-row.right{grid-template-columns:1fr}}.media-row img,.media-row .ph{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);border-radius:3px;background:#0b0d10;display:block}.media-row .ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;text-align:center;padding:.5rem}.media-row .txt{font-size:.85rem;line-height:1.6;color:var(--muted)}.media-row .txt p+p{margin-top:.5rem}
 
 /* ══ BARRE 5 POINTS PAR RUBRIQUE ═════════════
-   Placer dans chaque .rubric :
-   <div class="score-bar" data-score="3.5"></div>
-   0 à 5, les .5 sont des demi-points
+   Modifier uniquement data-score="X" (0 à 5, .5 accepté)
 ══════════════════════════════════════════════ */
 .score-bar{
   display:flex;
   align-items:center;
   gap:9px;
   margin-top:1rem;
-  padding-top:.8rem;
+  padding-top:.85rem;
   border-top:1px solid rgba(31,38,48,.9);
 }
 .score-bar-label{
@@ -117,11 +115,19 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
   flex-shrink:0;
   margin-right:3px;
 }
-.score-bar svg{
-  display:block;
-  flex-shrink:0;
-  overflow:visible;
-}
+.score-bar svg{ display:block; flex-shrink:0; overflow:visible; }
+
+/* ══ MENUS DÉROULANTS PAR PROJET ══ */
+.proj-rubric-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.75rem;}
+.proj-rubric-list > details{border:1px solid var(--border);border-radius:4px;background:rgba(11,13,16,.4);transition:border-color .2s;}
+.proj-rubric-list > details[open]{border-color:rgba(58,198,255,.45);}
+.proj-rubric-list > details > summary{padding:.7rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;list-style:none;}
+.proj-rubric-list > details > summary::-webkit-details-marker{display:none;}
+.proj-rubric-list > details > summary .ptitle{display:flex;align-items:center;gap:.55rem;font-size:.875rem;font-weight:600;color:var(--fg);}
+.proj-rubric-list > details > summary .ptitle::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(58,198,255,.4);flex-shrink:0;transition:background .2s;}
+.proj-rubric-list > details[open] > summary .ptitle{color:var(--accent);}
+.proj-rubric-list > details[open] > summary .ptitle::before{background:var(--accent);box-shadow:0 0 6px rgba(58,198,255,.5);}
+.proj-rubric-list > details > .prubric-body{padding:.75rem 1rem 1rem;border-top:1px solid var(--border);}
 </style>
 </head>
 <body>
@@ -134,11 +140,11 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
   <img src="banner.jpg" alt="" onerror="this.style.display='none'">
   <div class="page-banner-content container">
     <div class="crumb-top">Module_Viewer / NIVEAU_01</div>
-    <h1>BUT1 : Fondamentaux</h1>
+    <h1>BUT1 : Fondations</h1>
   </div>
 </div>
 <main class="container">
-<p class="summary reveal">Première année du BUT GEII : acquisition des fondamentaux en électronique, Programmation (Python,ST,LD,...) et mathématiques.</p>
+<p class="summary reveal">Première année du BUT GEII : acquisition des fondamentaux en électronique, Programmation (Python,Automatisme) et mathématiques.</p>
 <div class="meta-row reveal"><div><span class="k">Niveau</span><span class="v">NIVEAU_01</span></div><div><span class="k">Période</span><span class="v">2025 — 2026</span></div></div>
 <h2 class="h reveal">_Modules suivis</h2>
 <p class="hint">› Cliquez sur un module pour déplier — puis sur une compétence pour voir les projets liés</p>
@@ -155,29 +161,55 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 <div class="left"><div class="name">Produire une analyse fonctionnelle d'un produit</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
-<p>Conception et analyse de montages inverseur, non-inverseur, sommateur, dérivateur.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="4"></div><h4>_Projets en rapport</h4>
-<div class="proj-links"><a href="project-amplifier.html"><span>Amplificateur Classe D</span><span class="arr">Voir →</span></a></div>
+<p>Analyse d'une carte éléctronique</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph"><img src="concevoir-variateur-lumiere.png" alt=""></div><div class="txt"><p>La conception d’un produit repose fréquemment sur l’analyse de solutions déjà existantes. Lors de la première SAÉ, nous avons étudié le fonctionnement d’un variateur de lumière pour ampoules halogènes, connues pour leur forte consommation d’énergie. À partir de cette analyse, il nous a été demandé de concevoir un nouveau variateur spécialement adapté aux ampoules LED.</p><p>Cette SAÉ nous a permis de débuter dans la conception d'un carte éléctronique.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Avec cette analyse nous avons pus comprendre que pour créer un variateur de lumière nous avions besoin dans un premier temps d’une alimentation puis d’un Transistor MOSFET AOD472 (1) pour moduler la tension puis on utilise un régulateur (2) couplé à un AOP(3) Ce qui nous donne un “Comparateur”  qui vas pouvoir être utilisé à l'aide d’un potentiomètre pour ainsi faire varier l’intensité lumineuse de l’ampoule.</p><p>Grâce a cette analyse nous avons pus réaliser un prototype mais pour une ampoule LED</p></div><div class="ph"><img src="concevoir-variateur-lumiere2.png" alt=""></div></div></div><div class="score-bar" data-score="4"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="variateur-lumiere.html"><span>Variateur de lumière</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
 <div class="left"><div class="name"> Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
-<p>Filtres passifs et actifs, calcul de fréquence de coupure et de gain.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
-<div class="proj-links"><a href="project-amplifier.html"><span>Amplificateur Classe D</span><span class="arr">Voir →</span></a></div>
+<div class="proj-rubric-list">
+  <details>
+    <summary><span class="ptitle">Variateur de lumière</span><span class="chev">›</span></summary>
+    <div class="prubric-body">
+      <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph"><img src="variateur-lumiere.png" alt=""></div><div class="txt"><p>Le variateur de lumière a été notre premier projet où l'on devait concevoir une carte électronique de toute pièce pour un van aménagé. Cette carte avait pour but de faire varier l'intensité lumineuse d’une ampoule à LED pour économiser le plus d’énergie pour les long voyage avec le van.</p><p>(Cliquer sur le lien en dessous pour connaitre plus de ce projet)</p></div></div></div>
+      <div class="rubric"><h5>_Problème rencontrer</h5><div class="media-row right"><div class="txt"><p>Le problème rencontrer durant la fabrication a était que nous avions poser un circuit intégrer en trop (voir cadre rouge) et le problème a était que ce composant a dérégler tout la partie "comparateur" ce qui a empêcher le fonctionnement normal de l'allumage de l'ampoule.</p></div><div class="ph"><img src="erreur1-variateur.png" alt=""></div></div></div>
+      <div class="rubric"><div class="media-row right"><div class="txt"><p>Pour régler ce probléme nous avons du déssouder ce composant mais aussi gratter les pistes de cuivre relier à lui et ainsi refaire les piste de cuivre a la main a l'aide des cables bleu</p></div><div class="ph"><img src="erreur2-variateur.jpg" alt=""></div></div></div>
+    <div class="rubric"><h5>_Conclusion</h5><div class="media-row"><div class="ph"><img src="van-variateur.png" alt=""></div><div class="txt"><p>Bien qu'il y est différentes erreurs durant la fabrication, ce prototype à pu être utiliser et a pu fonctionner en condition réel ce qui montre que qu'en bien même une erreut survient il est toujour possible de la réparer.</p><p>(Cliquer sur le lien en dessous pour connaitre plus de ce projet)</p></div></div></div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptitle">Borne de recharge électrique</span><span class="chev">›</span></summary>
+    <div class="prubric-body">
+      <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph"><img src="borne-irl.png" alt=""></div><div class="txt"><p>Pour ce projet nous nous somme basé sur les bornes éléctriques utilisée sur les parking de l'iut pour recharger tout type de véhicule. Nous avons étudier le borne et nous nous en avons conclu qu'il y avait deux partie a réaliser surle carte, la première a été l'éléctronique de puissance et la deuxième a était de mettre en place la gestion des signaux éléctrique que ce soit pour la sécurité et la charge du véhicule mais aussi de l'interaction homme machine.</p></div></div></div>
+      <div class="rubric"><h5>_Résultat</h5><div class="media-row right"><div class="txt"><p>Résultat, mesures, difficultés.</p></div><div class="ph">[ Photo résultat ]</div></div></div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptitle">Console rétrogaming</span><span class="chev">›</span></summary>
+    <div class="prubric-body">
+      <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph">[ Image ]</div><div class="txt"><p>Décrivez le contexte du prototype.</p></div></div></div>
+      <div class="rubric"><h5>_Résultat</h5><div class="media-row right"><div class="txt"><p>Résultat, mesures, difficultés.</p></div><div class="ph">[ Photo résultat ]</div></div></div>
+    </div>
+  </details>
+</div>
+<div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="variateur-lumiere.html"><span>Variateur de lumière</span><span class="arr">Voir →</span></a></div>
+<div class="proj-links"><a href="borne-recharge.html"><span>Borne de recharge éléctrique</span><span class="arr">Voir →</span></a></div>
+<div class="proj-links"><a href="console-retro.html"><span>Console rétrogmaing</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
-<div class="left"><div class="name">Mesure et instrumentation</div></div>
+<div class="left"><div class="name">Rédiger un dossier de fabrication</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Utilisation de l'oscilloscope, du GBF et du multimètre en laboratoire.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
 </div></details><details><summary>
-<div class="left"><div class="name">Mesure et instrumentation</div></div>
+<div class="left"><div class="name">Tableau d'autoévaluation</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Utilisation de l'oscilloscope, du GBF et du multimètre en laboratoire.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
 </div></details></div>
 <h4>_Outils & technos</h4>
@@ -197,21 +229,21 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Maîtrise des pointeurs, malloc/free, gestion fine de la mémoire.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
 <div class="left"><div class="name">Structures de données</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Structs, unions, énumérations, listes chaînées.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
 <div class="left"><div class="name">Programmation Arduino</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Premiers programmes embarqués sur ATmega.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="score-bar" data-score="3"></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
 </div></details></div>
 <h4>_Outils & technos</h4>
@@ -230,7 +262,7 @@ document.querySelectorAll('.score-bar[data-score]').forEach(el => {
 
   const lbl = document.createElement('span');
   lbl.className = 'score-bar-label';
-  lbl.textContent = 'Maîtrise de la compètences :';
+  lbl.textContent = 'Maîtrise';
   el.appendChild(lbl);
 
   for(let i=1;i<=5;i++){

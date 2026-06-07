@@ -98,6 +98,23 @@ nav.top .links a:hover::after{width:100%}
 }
 .hero-banner .badge .d{width:6px;height:6px;border-radius:999px;background:var(--accent)}
 .hero-banner .badge span{font-size:10px;color:var(--muted);letter-spacing:.1em}
+/* ── titre + logo côte à côte ── */
+.hero-title-row{
+  display:flex;
+  align-items:flex-end;
+  gap:1.5rem;
+  margin-bottom:2rem;
+  flex-wrap:wrap;
+}
+.hero-logo{
+  width:64px;
+  flex-shrink:0;
+  opacity:.7;
+  filter:brightness(0) invert(1);
+  transition:opacity .3s;
+  margin-bottom:.6rem;
+}
+.hero-logo:hover{opacity:1}
 h1.hero{
   font-size:clamp(2.8rem,8vw,6.5rem);
   font-weight:800;letter-spacing:-.04em;line-height:.92;
@@ -281,7 +298,9 @@ footer h2 .dim{color:var(--muted)}
   <img src="banner.jpg" alt="Bannière" onerror="this.style.background='linear-gradient(135deg,#0d1117 0%,#11151a 50%,#0b1520 100%);this.style.display=&quot;block&quot;'">
   <div class="hero-banner-content container">
     <div class="badge reveal"><span class="d"></span><span class="mono">Génie Électrique &amp; Informatique Industrielle</span></div>
-    <h1 class="hero reveal reveal-d1">Portfolio<br><span class="dim" data-text="Lucas Forget">Lucas Forget</span></h1>
+    <div class="hero-title-row">
+      <h1 class="hero reveal reveal-d1">Portfolio<br><span class="dim" data-text="Lucas Forget">Lucas Forget</span></h1>
+      </div>
     <div class="hero-banner-bottom">
       <p class="bio reveal reveal-d2">Étudiant en BUT GEII à l'IUT de Rennes, passionné par les systèmes embarqués, l'électronique de puissance et l'automatisme. Curieux et motivé, je construis chaque jour de nouvelles compétences.</p>
       <dl class="stats mono reveal reveal-d3">
@@ -314,7 +333,7 @@ footer h2 .dim{color:var(--muted)}
         <div class="counter-lbl mono">Langages maîtrisés</div>
       </div>
       <div class="counter-item">
-        <div class="counter-val mono" data-target="2"><span class="num">0</span></div>
+        <div class="counter-val mono" data-target="1"><span class="num">0</span></div>
         <div class="counter-lbl mono">Stages effectués</div>
       </div>
     </div>
@@ -338,7 +357,7 @@ footer h2 .dim{color:var(--muted)}
           <li>
             <div class="year mono"><span class="n">02</span>2025 — 2026</div>
             <div class="dot-row"><div class="dot cur"></div></div>
-            <a class="card" href="but1.html"><h3>BUT1 — Fondations</h3><p>Électronique analogique, traitement du signal, programmation C.</p><span class="tl-open">Ouvrir →</span></a>
+            <a class="card" href="but1.html"><h3>BUT1 — Fondations</h3><p>Électronique analogique, traitement du signal, programmation.</p><span class="tl-open">Ouvrir →</span></a>
           </li>
           <li>
             <div class="year mono"><span class="n">03</span>2026 — 2027</div>
@@ -405,7 +424,7 @@ footer h2 .dim{color:var(--muted)}
       </a>
       <a class="proj reveal reveal-d3" href="console-retro.html">
         <div class="img">
-          <img src="console-retro.png" alt="Console de jeu" onerror="this.style.display='none'" data-lightbox>
+          <img src="console-retro.jpg" alt="Console de jeu" onerror="this.style.display='none'" data-lightbox>
           <div class="img-overlay">Voir le projet →</div>
         </div>
         <div class="info"><div><h5>Console de jeu rétrogaming</h5><p class="t">Proteus / Python / Raspberry Pi Pico</p></div><span class="y">2025</span></div>
@@ -439,8 +458,8 @@ footer h2 .dim{color:var(--muted)}
       </div>
       <div class="socials reveal reveal-d2">
         <a href="#">GitHub</a>
-        <a href="https://www.linkedin.com/in/lucas-forget-/" target="_blank">LinkedIn</a>
-        <a href="https://www.instagram.com/llucas.frg/ target="_blank">Instagram</a>
+        <a href="https://linkedin.com/in/lucas-forget" target="_blank">LinkedIn</a>
+        <a href="https://instagram.com/TON_COMPTE" target="_blank">Instagram</a>
         <a href="mailto:lucas.forget1@gmail.com">Email</a>
       </div>
     </div>
