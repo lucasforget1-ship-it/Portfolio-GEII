@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BUT1 : Fondations — Portfolio GEII</title>
+<meta name="description" content="Première année du BUT GEII : fondations en électronique, programmation et mathématiques."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+:root{--bg:#0b0d10;--fg:#e7ecf2;--muted:#7c8794;--card:#11151a;--border:#1f2630;--accent:#3ac6ff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(58,198,255,.3)}
+a{color:inherit;text-decoration:none}
+.container{max-width:60rem;margin:0 auto;padding:0 1.5rem}
+nav.top{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:.75rem 1.5rem;background:rgba(11,13,16,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+nav.top a.back{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+nav.top a.back:hover{color:var(--accent)}
+nav.top .tag{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent)}
+/* ── bannière page intérieure ── */
+.page-banner{
+  position:relative;width:100%;height:260px;overflow:hidden;
+  margin-top:48px;/* compenser la nav fixe */
+}
+.page-banner img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 40%;
+  filter:brightness(.45) saturate(.7);
+}
+.page-banner::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(11,13,16,0) 0%,rgba(11,13,16,.75) 70%,rgba(11,13,16,1) 100%);
+}
+.page-banner-content{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 1.5rem 2rem;
+  max-width:60rem;margin:0 auto;left:0;right:0;z-index:2;
+}
+.page-banner .crumb-top{
+  font-family:"JetBrains Mono",monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.3em;color:var(--accent);
+  margin-bottom:.5rem;
+}
+.page-banner h1{
+  font-size:clamp(1.8rem,4vw,3rem);font-weight:800;
+  letter-spacing:-.03em;line-height:1;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+/* ── reste des styles ── */
+main{padding:2.5rem 0 5rem}
+.crumb{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--accent);margin-bottom:1.5rem}
+h1.title{font-size:clamp(2rem,5vw,3.75rem);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:1.5rem}
+.summary{font-size:1.125rem;color:var(--muted);line-height:1.6;max-width:46rem;margin-bottom:3rem}
+.meta-row{display:flex;flex-wrap:wrap;gap:1rem 2rem;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:3rem;font-family:"JetBrains Mono",monospace;font-size:11px}
+.meta-row .k{color:var(--muted);text-transform:uppercase;letter-spacing:.2em;margin-right:.5rem}
+.meta-row .v{color:var(--accent)}
+h2.h{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
+.hint{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.2em;margin-bottom:1rem}
+.modules{display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem}
+details{border:1px solid var(--border);border-radius:4px;background:rgba(17,21,26,.4);transition:border-color .2s}
+details[open]{border-color:var(--accent)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary .left{display:flex;flex-direction:column;gap:.35rem;flex:1}
+summary .name{font-size:.95rem;font-weight:500}
+summary .short{font-size:.8rem;color:var(--muted)}
+summary .right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+summary .badge{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+summary .chev{font-family:"JetBrains Mono",monospace;color:var(--accent);transition:transform .2s;font-size:14px}
+details[open]>summary .chev{transform:rotate(90deg)}
+.body{padding:1rem 1.25rem 1.25rem;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem;line-height:1.65}
+.body h4{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:1.25rem 0 .5rem}
+.body p{margin-bottom:.5rem}
+.body .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.body .tags span{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.15em;padding:.3rem .6rem;border:1px solid var(--border);border-radius:2px;color:var(--muted)}
+.video-wrap{position:relative;width:100%;aspect-ratio:16/9;margin-top:.75rem;border:1px solid var(--border);border-radius:4px;overflow:hidden;background:#000}
+.video-wrap iframe,.video-wrap video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-placeholder{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;text-align:center;padding:1rem}
+.skills{display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem}
+.skills details{border-radius:3px;background:rgba(11,13,16,.5)}
+.skills summary{padding:.65rem 1rem}
+.skills summary .name{font-size:.85rem}
+.skills .body{padding:.75rem 1rem 1rem;font-size:.85rem}
+.proj-links{display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem}
+.proj-links a{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border:1px solid var(--border);border-radius:3px;color:var(--fg);font-size:.85rem;transition:all .15s}
+.proj-links a:hover{border-color:var(--accent);color:var(--accent);background:rgba(58,198,255,.05)}
+.proj-links a .arr{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:11px}
+.proj-links .none{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;padding:.4rem 0}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.25rem;border:1px solid var(--border);border-radius:2px;font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted)}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);text-align:center}
+.rubric{margin-top:1rem;padding:1rem;border:1px solid var(--border);border-radius:3px;background:rgba(11,13,16,.4)}.rubric+.rubric{margin-top:.75rem}.rubric h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}.media-row{display:grid;grid-template-columns:minmax(140px,40%) 1fr;gap:1rem;align-items:start}.media-row.right{grid-template-columns:1fr minmax(140px,40%)}@media(max-width:560px){.media-row,.media-row.right{grid-template-columns:1fr}}.media-row img,.media-row .ph{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);border-radius:3px;background:#0b0d10;display:block}.media-row .ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;text-align:center;padding:.5rem}.media-row .txt{font-size:.85rem;line-height:1.6;color:var(--muted)}.media-row .txt p+p{margin-top:.5rem}
+
+/* ══ BARRE 5 POINTS PAR RUBRIQUE ═════════════
+   Modifier uniquement data-score="X" (0 à 5, .5 accepté)
+══════════════════════════════════════════════ */
+.score-bar{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:1rem;
+  padding-top:.85rem;
+  border-top:1px solid rgba(31,38,48,.9);
+}
+.score-bar-label{
+  font-family:"JetBrains Mono",monospace;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:rgba(58,198,255,.55);
+  flex-shrink:0;
+  margin-right:3px;
+}
+.score-bar svg{ display:block; flex-shrink:0; overflow:visible; }
+
+/* ══ MENUS DÉROULANTS PAR PROJET ══ */
+.proj-rubric-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.75rem;}
+.proj-rubric-list > details{border:1px solid var(--border);border-radius:4px;background:rgba(11,13,16,.4);transition:border-color .2s;}
+.proj-rubric-list > details[open]{border-color:rgba(58,198,255,.45);}
+.proj-rubric-list > details > summary{padding:.7rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;list-style:none;}
+.proj-rubric-list > details > summary::-webkit-details-marker{display:none;}
+.proj-rubric-list > details > summary .ptitle{display:flex;align-items:center;gap:.55rem;font-size:.875rem;font-weight:600;color:var(--fg);}
+.proj-rubric-list > details > summary .ptitle::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(58,198,255,.4);flex-shrink:0;transition:background .2s;}
+.proj-rubric-list > details[open] > summary .ptitle{color:var(--accent);}
+.proj-rubric-list > details[open] > summary .ptitle::before{background:var(--accent);box-shadow:0 0 6px rgba(58,198,255,.5);}
+.proj-rubric-list > details > .prubric-body{padding:.75rem 1rem 1rem;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+<div id="toast">✓ Copié !</div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="progress-bar"></div>
+<nav class="top"><span class="tag">Portfolio_GEII</span><a class="back" href="index.html">← Retour</a></nav>
+
+<div class="page-banner">
+  <img src="banner.jpg" alt="" onerror="this.style.display='none'">
+  <div class="page-banner-content container">
+    <div class="crumb-top">Module_Viewer / NIVEAU_01</div>
+    <h1>BUT1 : Fondations</h1>
+  </div>
+</div>
+<main class="container">
+<p class="summary reveal">Première année du BUT GEII : acquisition des fondamentaux en électronique, Programmation (Python,Automatisme) et mathématiques.</p>
+<div class="meta-row reveal"><div><span class="k">Niveau</span><span class="v">NIVEAU_01</span></div><div><span class="k">Période</span><span class="v">2025 — 2026</span></div></div>
+<h2 class="h reveal">_Modules suivis</h2>
+<p class="hint">› Cliquez sur un module pour déplier — puis sur une compétence pour voir les projets liés</p>
+
+<div class="modules reveal"><details><summary>
+<div class="left"><div class="name">Concevoir</div><div class="short">Produire un analyse / Réaliser un prototype / Rédiger un dossier .</div></div>
+<div class="right"><span class="badge">[x]</span><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Mener une conception partielle d'un projet en intégrant une démarche méthodique de gestion de projet, permettant de planifier, organiser et suivre efficacement les différentes phases de conception.</p>
+<h4>_Notes & contexte</h4>
+<p>Cette compétence se décompose en trois sous-parties principales. La première consiste à analyser les besoins et le fonctionnement d'un système afin d'en comprendre les différentes fonctions. La deuxième vise à concevoir et tester des solutions techniques, qu'elles soient matérielles ou logicielles, à travers la réalisation d'un prototype. Enfin, la troisième porte sur la préparation de la fabrication, en rédigeant les documents techniques nécessaires à partir du dossier de conception.</p>
+<h4>_Compétences (cliquez pour déplier)</h4>
+<div class="skills"><details><summary>
+<div class="left"><div class="name">Produire une analyse fonctionnelle d'un produit</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Analyse d'une carte éléctronique</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph"><img src="concevoir-variateur-lumiere.png" alt=""></div><div class="txt"><p>La conception d’un produit repose fréquemment sur l’analyse de solutions déjà existantes. Lors de la première SAÉ, nous avons étudié le fonctionnement d’un variateur de lumière pour ampoules halogènes, connues pour leur forte consommation d’énergie. À partir de cette analyse, il nous a été demandé de concevoir un nouveau variateur spécialement adapté aux ampoules LED.</p><p>Cette SAÉ nous a permis de débuter dans la conception d'un carte éléctronique.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Avec cette analyse nous avons pus comprendre que pour créer un variateur de lumière nous avions besoin dans un premier temps d’une alimentation puis d’un Transistor MOSFET AOD472 (1) pour moduler la tension puis on utilise un régulateur (2) couplé à un AOP(3) Ce qui nous donne un “Comparateur”  qui vas pouvoir être utilisé à l'aide d’un potentiomètre pour ainsi faire varier l’intensité lumineuse de l’ampoule.</p><p>Grâce a cette analyse nous avons pus réaliser un prototype mais pour une ampoule LED</p></div><div class="ph"><img src="concevoir-variateur-lumiere2.png" alt=""></div></div></div><div class="score-bar" data-score="4"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="variateur-lumiere.html"><span>Variateur de lumière</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name"> Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<div class="proj-rubric-list">
+  <details>
+    <summary><span class="ptitle">Variateur de lumière</span><span class="chev">›</span></summary>
+    <div class="prubric-body">
+      <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph"><img src="variateur-lumiere.png" alt=""></div><div class="txt"><p>Le variateur de lumière a été notre premier projet où l'on devait concevoir une carte électronique de toute pièce pour un van aménagé. Cette carte avait pour but de faire varier l'intensité lumineuse d’une ampoule à LED pour économiser le plus d’énergie pour les long voyage avec le van.</p><p>(Cliquer sur le lien en dessous pour connaitre plus de ce projet)</p></div></div></div>
+      <div class="rubric"><h5>_Problème rencontrer</h5><div class="media-row right"><div class="txt"><p>Le problème rencontrer durant la fabrication a était que nous avions poser un circuit intégrer en trop (voir cadre rouge) et le problème a était que ce composant a dérégler tout la partie "comparateur" ce qui a empêcher le fonctionnement normal de l'allumage de l'ampoule.</p></div><div class="ph"><img src="erreur1-variateur.png" alt=""></div></div></div>
+      <div class="rubric"><div class="media-row right"><div class="txt"><p>Pour régler ce probléme nous avons du déssouder ce composant mais aussi gratter les pistes de cuivre relier à lui et ainsi refaire les piste de cuivre a la main a l'aide des cables bleu</p></div><div class="ph"><img src="erreur2-variateur.jpg" alt=""></div></div></div>
+    <div class="rubric"><h5>_Conclusion</h5><div class="media-row"><div class="ph"><img src="van-variateur.png" alt=""></div><div class="txt"><p>Bien qu'il y est différentes erreurs durant la fabrication, ce prototype à pu être utiliser et a pu fonctionner en condition réel ce qui montre que qu'en bien même une erreut survient il est toujour possible de la réparer.</p><p>(Cliquer sur le lien en dessous pour connaitre plus de ce projet)</p></div></div></div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptitle">Borne de recharge électrique</span><span class="chev">›</span></summary>
+    <div class="prubric-body">
+      <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph"><img src="borne-irl.png" alt=""></div><div class="txt"><p>Pour ce projet nous nous somme basé sur les bornes éléctriques utilisée sur les parking de l'iut pour recharger tout type de véhicule. Nous avons étudier le borne et nous nous en avons conclu qu'il y avait deux partie a réaliser surle carte, la première a été l'éléctronique de puissance et la deuxième a était de mettre en place la gestion des signaux éléctrique que ce soit pour la sécurité et la charge du véhicule mais aussi de l'interaction homme machine.</p></div></div></div>
+      <div class="rubric"><h5>_Résultat</h5><div class="media-row right"><div class="txt"><p>Après être passer par toute les étapes de création, du schéma éléctrique jusqu'a la soudure de chaques composants on obtient une borne de recharge fonctionnelle éléctroniquement parlant mais il manque une seul partie qui est la partie signal parler précédment qui est essenteil pour le fonctionnement total de la carte du au fait que c'est cette partie controle la charge de la batterie par l'intermédiaire de la raspberry pi pico (par encore présente sur la photo).</p></div><div class="ph"><img src="borne-recharge.png" alt=""></div></div></div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptitle">Console rétrogaming</span><span class="chev">›</span></summary>
+    <div class="prubric-body">
+      <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph"><img src="console-retro.png" alt=""></div><div class="txt"><p>Pour la spécialité ESE (éléctronique & système embarqué) nous avons du réaliser une console rétrogaming portable qui pourrait s'apparenter à une gameboy. Cette carte est composé d'un système de son, un système d'affichage afin de voir le jeu et bien sur un 6 boutons et un joystick pour jouer au jeu. Toute ces partis sont piloter par une raspberry pi pico 2 programmer avec CircuitPython.</p></div></div></div>
+      <div class="rubric"><h5>_Problème Rencontré</h5><div class="media-row right"><div class="txt"><p>Durant la création du schéma de câble nous avons oublier de relier deux composant a leur alimentaion ce qui a eu pour effet au moment du test de la carte de provoquer un court circuit qui a fait griller le circuit intégrer attribuer la gestion du son.</p></div><div class="ph"><img src="borne-recharge.png" alt=""></div></div></div>
+      <div class="rubric"><h5>_Solution Trouvé</h5><div class="media-row right"><div class="txt"><p>La solutions pour résoudre ce problème à était en premier temps de dessouder et de resouder un nouveau circuit intégrer puis de gratter les pistes de cuivre provoquant le court-circuit et ainsi resouder les nouvelles piste grâce au cable rouge vu sur la photos</p></div><div class="ph"><img src="borne-recharge.png" alt=""></div></div></div>
+      <div class="rubric"><h5>_Conclusion</h5><div class="media-row right"><div class="txt"><p>Il ne nous as rester plus qu'à coder les différent jeu vidéo à notre disposition, le premier a était le jeu Simon qui est un jeu de mémorisation de couleur très connu des années 80, nous avons ensuite codé un deuxième jeu appelé GunfFight qui est un jeu de reflex représentent un duel de cowboy au far west (voir photo)</p></div><div class="ph"><img src="console-gunfight.png" alt=""></div></div></div>
+    </div>
+  </details>
+</div>
+<div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="variateur-lumiere.html"><span>Variateur de lumière</span><span class="arr">Voir →</span></a></div>
+<div class="proj-links"><a href="borne-recharge.html"><span>Borne de recharge éléctrique</span><span class="arr">Voir →</span></a></div>
+<div class="proj-links"><a href="console-retro.html"><span>Console rétrogmaing</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Rédiger un dossier de fabrication</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Utilisation de l'oscilloscope, du GBF et du multimètre en laboratoire.</p>
+<div class="pdf-viewer-wrap">
+
+  <!-- ── Onglets ── -->
+  <div class="pdf-tabs">
+    <button class="pdf-tab active" onclick="switchPdf(0)">Dossier_01</button>
+    <button class="pdf-tab"        onclick="switchPdf(1)">Dossier_02</button>
+    <button class="pdf-tab"        onclick="switchPdf(2)">Dossier_03</button>
+  </div>
+
+  <!-- ── Panneau 1 ── -->
+  <div class="pdf-panel active" id="pdf-panel-0">
+    <div>
+      <div class="pdf-frame-wrap">
+        <iframe id="pdf-iframe-0" src="dossier-1.pdf#page=1" title="Dossier 1"></iframe>
+        <div class="pdf-nav">
+          <button onclick="prevPage(0)" id="prev-0" disabled>← Préc.</button>
+          <span class="pdf-nav-info" id="info-0">Page 1</span>
+          <button onclick="nextPage(0)" id="next-0">Suiv. →</button>
+        </div>
+      </div>
+      <a class="pdf-open-link" href="dossier-1.pdf" target="_blank">⬒ Ouvrir en plein écran</a>
+    </div>
+    <div class="pdf-context">
+      <h6>_Contexte</h6>
+      <p>Remplacez ce texte par la description du dossier 1 : objectif, projet concerné, contenu principal.</p>
+      <p>Précisez les contraintes, outils utilisés et ce que ce dossier démontre de votre maîtrise.</p>
+    </div>
+  </div>
+
+  <!-- ── Panneau 2 ── -->
+  <div class="pdf-panel" id="pdf-panel-1">
+    <div>
+      <div class="pdf-frame-wrap">
+        <iframe id="pdf-iframe-1" src="dossier-2.pdf#page=1" title="Dossier 2"></iframe>
+        <div class="pdf-nav">
+          <button onclick="prevPage(1)" id="prev-1" disabled>← Préc.</button>
+          <span class="pdf-nav-info" id="info-1">Page 1</span>
+          <button onclick="nextPage(1)" id="next-1">Suiv. →</button>
+        </div>
+      </div>
+      <a class="pdf-open-link" href="dossier-2.pdf" target="_blank">⬒ Ouvrir en plein écran</a>
+    </div>
+    <div class="pdf-context">
+      <h6>_Contexte</h6>
+      <p>Remplacez ce texte par la description du dossier 2 : objectif, projet concerné, contenu principal.</p>
+      <p>Précisez les contraintes, outils utilisés et ce que ce dossier démontre de votre maîtrise.</p>
+    </div>
+  </div>
+
+  <!-- ── Panneau 3 ── -->
+  <div class="pdf-panel" id="pdf-panel-2">
+    <div>
+      <div class="pdf-frame-wrap">
+        <iframe id="pdf-iframe-2" src="dossier-3.pdf#page=1" title="Dossier 3"></iframe>
+        <div class="pdf-nav">
+          <button onclick="prevPage(2)" id="prev-2" disabled>← Préc.</button>
+          <span class="pdf-nav-info" id="info-2">Page 1</span>
+          <button onclick="nextPage(2)" id="next-2">Suiv. →</button>
+        </div>
+      </div>
+      <a class="pdf-open-link" href="dossier-3.pdf" target="_blank">⬒ Ouvrir en plein écran</a>
+    </div>
+    <div class="pdf-context">
+      <h6>_Contexte</h6>
+      <p>Remplacez ce texte par la description du dossier 3 : objectif, projet concerné, contenu principal.</p>
+      <p>Précisez les contraintes, outils utilisés et ce que ce dossier démontre de votre maîtrise.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ── Visionneur PDF ── */
+const pdfPages  = [1, 1, 1];
+const pdfFiles  = ['dossier-1.pdf', 'dossier-2.pdf', 'dossier-3.pdf'];
+
+function switchPdf(idx){
+  document.querySelectorAll('.pdf-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+  document.querySelectorAll('.pdf-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+}
+function updateFrame(idx){
+  const iframe = document.getElementById('pdf-iframe-'+idx);
+  iframe.src = pdfFiles[idx]+'#page='+pdfPages[idx];
+  document.getElementById('info-'+idx).textContent = 'Page '+pdfPages[idx];
+  document.getElementById('prev-'+idx).disabled = pdfPages[idx] <= 1;
+}
+function nextPage(idx){ pdfPages[idx]++; updateFrame(idx); }
+function prevPage(idx){ if(pdfPages[idx]>1){ pdfPages[idx]--; updateFrame(idx); } }
+</script>
+<div class="left"><div class="name">Tableau d'autoévaluation</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Utilisation de l'oscilloscope, du GBF et du multimètre en laboratoire.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
+</div></details></div>
+<h4>_Outils & technos</h4>
+<div class="tags"><span>LTspice</span><span>Oscilloscope</span><span>GBF</span><span>Multimètre</span></div>
+
+
+</div></details><details><summary>
+<div class="left"><div class="name">Vérifier</div><div class="short">Appliquer un procédure d'essais / Identifier un disfonctionnement & Décrire ses effets.</div></div>
+<div class="right"><span class="badge">[x]</span><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Réaliser les essais et les mesures de validation d’un système afin de vérifier son bon fonctionnement, d’évaluer ses performances et de s'assurer qu'il répond aux exigences définies lors de sa conception.</p>
+<h4>_Notes & contexte</h4>
+<p>Cette compétence se décompose également en trois sous-parties. La première consiste à mettre en œuvre une procédure d'essai afin de vérifier le comportement du système dans différentes conditions. La deuxième vise à détecter et localiser les dysfonctionnements pouvant affecter son fonctionnement. Enfin, la troisième consiste à analyser les conséquences d'un dysfonctionnement et à en décrire les effets sur les performances et le comportement du système.</p>
+<h4>_Compétences (cliquez pour déplier)</h4>
+<div class="skills"><details><summary>
+<div class="left"><div class="name">Pointeurs & allocation mémoire</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Maîtrise des pointeurs, malloc/free, gestion fine de la mémoire.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Structures de données</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Structs, unions, énumérations, listes chaînées.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
+</div></details><details><summary>
+<div class="left"><div class="name">Programmation Arduino</div></div>
+<div class="right"><span class="chev">›</span></div>
+</summary><div class="body">
+<p>Premiers programmes embarqués sur ATmega.</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
+</div></details></div>
+<h4>_Outils & technos</h4>
+<div class="tags"><span>GCC</span><span>VS Code</span><span>Arduino IDE</span><span>Git</span></div>
+</div></details></div>
+<a class="back-link reveal" href="index.html">← Retour au portfolio</a></main>
+<footer>© 2026 / Portfolio_GEII</footer>
+
+<script src="shared.js"></script>
+<script>
+document.querySelectorAll('.score-bar[data-score]').forEach(el => {
+  const raw = parseFloat(el.dataset.score)||0;
+  const val = Math.min(5,Math.max(0,raw));
+  const R=7, S=R*2+6, C=S/2;
+  const FULL='#3ac6ff', STROKE='rgba(58,198,255,.28)';
+
+  const lbl = document.createElement('span');
+  lbl.className = 'score-bar-label';
+  lbl.textContent = 'Maîtrise';
+  el.appendChild(lbl);
+
+  for(let i=1;i<=5;i++){
+    const diff = val-(i-1);
+    const state = diff>=1 ? 'full' : diff>0 ? 'half' : 'empty';
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns,'svg');
+    svg.setAttribute('width',S); svg.setAttribute('height',S);
+    svg.setAttribute('viewBox',`0 0 ${S} ${S}`);
+
+    if(state==='empty'){
+      const c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',C);c.setAttribute('cy',C);c.setAttribute('r',R);
+      c.setAttribute('fill','none');c.setAttribute('stroke',STROKE);c.setAttribute('stroke-width','1.5');
+      svg.appendChild(c);
+    } else if(state==='full'){
+      const uid='gf'+Math.random().toString(36).slice(2,6);
+      const defs=document.createElementNS(ns,'defs');
+      defs.innerHTML=`<filter id="${uid}" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>`;
+      svg.appendChild(defs);
+      const c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',C);c.setAttribute('cy',C);c.setAttribute('r',R);
+      c.setAttribute('fill',FULL); c.setAttribute('filter',`url(#${uid})`);
+      svg.appendChild(c);
+    } else {
+      const cid='hc'+Math.random().toString(36).slice(2,6);
+      const uid='hg'+Math.random().toString(36).slice(2,6);
+      const defs=document.createElementNS(ns,'defs');
+      defs.innerHTML=`<clipPath id="${cid}"><rect x="0" y="0" width="${C}" height="${S}"/></clipPath>
+        <filter id="${uid}" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>`;
+      svg.appendChild(defs);
+      const bg=document.createElementNS(ns,'circle');
+      bg.setAttribute('cx',C);bg.setAttribute('cy',C);bg.setAttribute('r',R);
+      bg.setAttribute('fill','none');bg.setAttribute('stroke',STROKE);bg.setAttribute('stroke-width','1.5');
+      svg.appendChild(bg);
+      const h=document.createElementNS(ns,'circle');
+      h.setAttribute('cx',C);h.setAttribute('cy',C);h.setAttribute('r',R);
+      h.setAttribute('fill',FULL);h.setAttribute('clip-path',`url(#${cid})`);h.setAttribute('filter',`url(#${uid})`);
+      svg.appendChild(h);
+    }
+    el.appendChild(svg);
+  }
+});
+</script>
+</body>
+</html>

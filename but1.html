@@ -117,17 +117,80 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 }
 .score-bar svg{ display:block; flex-shrink:0; overflow:visible; }
 
-/* ══ MENUS DÉROULANTS PAR PROJET ══ */
-.proj-rubric-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.75rem;}
-.proj-rubric-list > details{border:1px solid var(--border);border-radius:4px;background:rgba(11,13,16,.4);transition:border-color .2s;}
-.proj-rubric-list > details[open]{border-color:rgba(58,198,255,.45);}
-.proj-rubric-list > details > summary{padding:.7rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;list-style:none;}
-.proj-rubric-list > details > summary::-webkit-details-marker{display:none;}
-.proj-rubric-list > details > summary .ptitle{display:flex;align-items:center;gap:.55rem;font-size:.875rem;font-weight:600;color:var(--fg);}
-.proj-rubric-list > details > summary .ptitle::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(58,198,255,.4);flex-shrink:0;transition:background .2s;}
-.proj-rubric-list > details[open] > summary .ptitle{color:var(--accent);}
-.proj-rubric-list > details[open] > summary .ptitle::before{background:var(--accent);box-shadow:0 0 6px rgba(58,198,255,.5);}
-.proj-rubric-list > details > .prubric-body{padding:.75rem 1rem 1rem;border-top:1px solid var(--border);}
+/* ══ VISIONNEUR PDF ══════════════════════════════
+   3 dossiers avec onglets, navigation pages, contexte
+═════════════════════════════════════════════════ */
+.pdf-viewer-wrap{margin-bottom:.75rem;}
+
+/* ── Onglets ── */
+.pdf-tabs{
+  display:flex;gap:.4rem;margin-bottom:.75rem;flex-wrap:wrap;
+}
+.pdf-tab{
+  font-family:"JetBrains Mono",monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.15em;
+  padding:.4rem .85rem;border:1px solid var(--border);
+  border-radius:2px;cursor:pointer;color:var(--muted);
+  background:transparent;transition:all .2s;
+}
+.pdf-tab:hover{border-color:rgba(58,198,255,.4);color:var(--fg);}
+.pdf-tab.active{
+  border-color:var(--accent);color:var(--accent);
+  background:rgba(58,198,255,.06);
+}
+
+/* ── Panneau ── */
+.pdf-panel{display:none;}
+.pdf-panel.active{display:grid;grid-template-columns:1fr 280px;gap:1rem;align-items:start;}
+@media(max-width:700px){.pdf-panel.active{grid-template-columns:1fr;}}
+
+/* ── Zone PDF ── */
+.pdf-frame-wrap{
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+  background:#080a0d;position:relative;
+}
+.pdf-frame-wrap iframe{
+  width:100%;height:480px;border:0;display:block;
+}
+/* ── Barre navigation ── */
+.pdf-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.5rem .75rem;border-top:1px solid var(--border);
+  background:rgba(11,13,16,.6);
+}
+.pdf-nav button{
+  font-family:"JetBrains Mono",monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.15em;
+  padding:.35rem .7rem;border:1px solid var(--border);
+  border-radius:2px;background:transparent;color:var(--muted);cursor:pointer;
+  transition:all .15s;
+}
+.pdf-nav button:hover{border-color:var(--accent);color:var(--accent);}
+.pdf-nav button:disabled{opacity:.3;cursor:default;}
+.pdf-nav .pdf-nav-info{
+  font-family:"JetBrains Mono",monospace;font-size:10px;
+  color:var(--muted);letter-spacing:.1em;
+}
+.pdf-open-link{
+  display:block;text-align:center;margin-top:.5rem;
+  font-family:"JetBrains Mono",monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.2em;color:var(--accent);
+  padding:.4rem;border:1px solid rgba(58,198,255,.2);border-radius:2px;
+  transition:background .2s;
+}
+.pdf-open-link:hover{background:rgba(58,198,255,.06);}
+
+/* ── Contexte ── */
+.pdf-context{
+  padding:1rem;border:1px solid var(--border);border-radius:4px;
+  background:rgba(17,21,26,.4);font-size:.85rem;color:var(--muted);line-height:1.6;
+}
+.pdf-context h6{
+  font-family:"JetBrains Mono",monospace;font-size:9px;
+  text-transform:uppercase;letter-spacing:.25em;color:var(--accent);
+  margin-bottom:.75rem;
+}
+.pdf-context p+p{margin-top:.5rem;}
 </style>
 </head>
 <body>
@@ -173,23 +236,23 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
     <summary><span class="ptitle">Variateur de lumière</span><span class="chev">›</span></summary>
     <div class="prubric-body">
       <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph"><img src="variateur-lumiere.png" alt=""></div><div class="txt"><p>Le variateur de lumière a été notre premier projet où l'on devait concevoir une carte électronique de toute pièce pour un van aménagé. Cette carte avait pour but de faire varier l'intensité lumineuse d’une ampoule à LED pour économiser le plus d’énergie pour les long voyage avec le van.</p><p>(Cliquer sur le lien en dessous pour connaitre plus de ce projet)</p></div></div></div>
-      <div class="rubric"><h5>_Problème rencontrer</h5><div class="media-row right"><div class="txt"><p>Le problème rencontrer durant la fabrication a était que nous avions poser un circuit intégrer en trop (voir cadre rouge) et le problème a était que ce composant a dérégler tout la partie "comparateur" ce qui a empêcher le fonctionnement normal de l'allumage de l'ampoule.</p></div><div class="ph"><img src="erreur1-variateur.png" alt=""></div></div></div>
-      <div class="rubric"><div class="media-row right"><div class="txt"><p>Pour régler ce probléme nous avons du déssouder ce composant mais aussi gratter les pistes de cuivre relier à lui et ainsi refaire les piste de cuivre a la main a l'aide des cables bleu</p></div><div class="ph"><img src="erreur2-variateur.jpg" alt=""></div></div></div>
-    <div class="rubric"><h5>_Conclusion</h5><div class="media-row"><div class="ph"><img src="van-variateur.png" alt=""></div><div class="txt"><p>Bien qu'il y est différentes erreurs durant la fabrication, ce prototype à pu être utiliser et a pu fonctionner en condition réel ce qui montre que qu'en bien même une erreut survient il est toujour possible de la réparer.</p><p>(Cliquer sur le lien en dessous pour connaitre plus de ce projet)</p></div></div></div>
+      <div class="rubric"><h5>_Schéma éléctrique</h5><div class="media-row right"><div class="txt"><p>La première étape pour concevoir la carte éléctronique a était de dessiner le schéma au préalablement donner pour les professeurs sur Proteus</p></div><div class="ph"><img src="schema-elec-variateur.png" alt=""></div></div></div>
+      <div class="rubric"><div class="media-row right"><div class="txt"><p>Puis dès que le schéma a était reproduis il a fallut dimmenssioner la carte pour ensuite placer les différents composants de la carte en suivant différent concrainte du cahier des charge</p></div><div class="ph"><img src="proteus-variateur.png" alt=""></div></div></div>
+    <div class="rubric"><h5>_Conclusion</h5><div class="media-row"><div class="ph"><img src="van-variateur.png" alt=""></div><div class="txt"><p>Il ne nous reste plus cas souder les composants à la bonne place et nous pourrons vérifier le fonctionnement.</p><p>(Cliquer sur le lien en dessous pour connaitre plus de ce projet)</p></div></div></div>
     </div>
   </details>
   <details>
     <summary><span class="ptitle">Borne de recharge électrique</span><span class="chev">›</span></summary>
     <div class="prubric-body">
       <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph"><img src="borne-irl.png" alt=""></div><div class="txt"><p>Pour ce projet nous nous somme basé sur les bornes éléctriques utilisée sur les parking de l'iut pour recharger tout type de véhicule. Nous avons étudier le borne et nous nous en avons conclu qu'il y avait deux partie a réaliser surle carte, la première a été l'éléctronique de puissance et la deuxième a était de mettre en place la gestion des signaux éléctrique que ce soit pour la sécurité et la charge du véhicule mais aussi de l'interaction homme machine.</p></div></div></div>
-      <div class="rubric"><h5>_Résultat</h5><div class="media-row right"><div class="txt"><p>Résultat, mesures, difficultés.</p></div><div class="ph">[ Photo résultat ]</div></div></div>
+      <div class="rubric"><h5>_Résultat</h5><div class="media-row right"><div class="txt"><p>Après être passer par toute les étapes de création, du schéma éléctrique jusqu'a la soudure de chaques composants on obtient une borne de recharge fonctionnelle éléctroniquement parlant mais il manque une seul partie qui est la partie signal parler précédment qui est essenteil pour le fonctionnement total de la carte du au fait que c'est cette partie controle la charge de la batterie par l'intermédiaire de la raspberry pi pico (par encore présente sur la photo).</p></div><div class="ph"><img src="borne-recharge.png" alt=""></div></div></div>
     </div>
   </details>
   <details>
     <summary><span class="ptitle">Console rétrogaming</span><span class="chev">›</span></summary>
     <div class="prubric-body">
-      <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph">[ Image ]</div><div class="txt"><p>Décrivez le contexte du prototype.</p></div></div></div>
-      <div class="rubric"><h5>_Résultat</h5><div class="media-row right"><div class="txt"><p>Résultat, mesures, difficultés.</p></div><div class="ph">[ Photo résultat ]</div></div></div>
+      <div class="rubric"><h5>_Contexte</h5><div class="media-row"><div class="ph"><img src="console-retro.png" alt=""></div><div class="txt"><p>Pour la spécialité ESE (éléctronique & système embarqué) nous avons du réaliser une console rétrogaming portable qui pourrait s'apparenter à une gameboy. Cette carte est composé d'un système de son, un système d'affichage afin de voir le jeu et bien sur un 6 boutons et un joystick pour jouer au jeu. Toute ces partis sont piloter par une raspberry pi pico 2 programmer avec CircuitPython.</p></div></div></div>
+      <div class="rubric"><h5>_Conclusion</h5><div class="media-row right"><div class="txt"><p>Il ne nous as rester plus qu'à coder les différent jeu vidéo à notre disposition, le premier a était le jeu Simon qui est un jeu de mémorisation de couleur très connu des années 80, nous avons ensuite codé un deuxième jeu appelé GunfFight qui est un jeu de reflex représentent un duel de cowboy au far west (voir photo)</p></div><div class="ph"><img src="console-gunfight.png" alt=""></div></div></div>
     </div>
   </details>
 </div>
@@ -198,26 +261,111 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 <div class="proj-links"><a href="borne-recharge.html"><span>Borne de recharge éléctrique</span><span class="arr">Voir →</span></a></div>
 <div class="proj-links"><a href="console-retro.html"><span>Console rétrogmaing</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
+
 <div class="left"><div class="name">Rédiger un dossier de fabrication</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
-<p>Utilisation de l'oscilloscope, du GBF et du multimètre en laboratoire.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
-<div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
+<div class="pdf-viewer-wrap">
+
+  <!-- ── Onglets ── -->
+  <div class="pdf-tabs">
+    <button class="pdf-tab active" onclick="switchPdf(0)">Variateur de lumière</button>
+    <button class="pdf-tab"        onclick="switchPdf(1)">CR_Elen2-TP4</button>
+    <button class="pdf-tab"        onclick="switchPdf(2)">CR_Elen2-TP8</button>
+  </div>
+
+  <!-- ── Panneau 1 ── -->
+  <div class="pdf-panel active" id="pdf-panel-0">
+    <div>
+      <div class="pdf-frame-wrap">
+        <iframe id="pdf-iframe-0" src="CR-variateur.pdf" title="Dossier 1"></iframe>
+        <div class="pdf-nav">
+          <button onclick="prevPage(0)" id="prev-0" disabled>← Préc.</button>
+          <span class="pdf-nav-info" id="info-0">Page 1</span>
+          <button onclick="nextPage(0)" id="next-0">Suiv. →</button>
+        </div>
+      </div>
+      <a class="pdf-open-link" href="CR-variateur.pdf" target="_blank">⬒ Ouvrir en plein écran</a>
+    </div>
+    <div class="pdf-context">
+      <h6>_Contexte</h6>
+      <p>Ce dossier est celui du variateur de lumière, il retrasse toute la progression de notre projet de A à Z en expliquant aussi tout ce que l'on a tiré du projet</p>
+      <p>Dans ce dossier nous avons du présenter le projets sous différente forme comme par exemple quelque schéma structurelle mais aussi une notice d'u'tilisation de l'appareil.</p>
+    </div>
+  </div>
+
+  <!-- ── Panneau 2 ── -->
+  <div class="pdf-panel" id="pdf-panel-1">
+    <div>
+      <div class="pdf-frame-wrap">
+        <iframe id="pdf-iframe-1" src="CR-Elen4.pdf" title="Dossier 2"></iframe>
+        <div class="pdf-nav">
+          <button onclick="prevPage(1)" id="prev-1" disabled>← Préc.</button>
+          <span class="pdf-nav-info" id="info-1">Page 1</span>
+          <button onclick="nextPage(1)" id="next-1">Suiv. →</button>
+        </div>
+      </div>
+      <a class="pdf-open-link" href="CR-Elen4.pdf" target="_blank">⬒ Ouvrir en plein écran</a>
+    </div>
+    <div class="pdf-context">
+      <h6>_Contexte</h6>
+      <p>Ce Compte Rendu c'est basé sur l'étude de filtre passe passe bas et passe haut pour comprendre leur fonctionnement</p>
+      <p>Ce Compte rendu m'as permis d'apprendre a clarifier mes explication pour être mieux compris par les lecteurs ce qui me sera très benefique a l'avenir. </p>
+    </div>
+  </div>
+
+  <!-- ── Panneau 3 ── -->
+  <div class="pdf-panel" id="pdf-panel-2">
+    <div>
+      <div class="pdf-frame-wrap">
+        <iframe id="pdf-iframe-2" src="CR_ELEN8.pdf" title="Dossier 3"></iframe>
+        <div class="pdf-nav">
+          <button onclick="prevPage(2)" id="prev-2" disabled>← Préc.</button>
+          <span class="pdf-nav-info" id="info-2">Page 1</span>
+          <button onclick="nextPage(2)" id="next-2">Suiv. →</button>
+        </div>
+      </div>
+      <a class="pdf-open-link" href="CR_ELEN8.pdf" target="_blank">⬒ Ouvrir en plein écran</a>
+    </div>
+    <div class="pdf-context">
+      <h6>_Contexte</h6>
+      <p>Ce Compte Rendu ce base sur l'étude d'un filtre universel mais plus précisement du filtre passe bande a l'intérieur et de voir quelle composant peux influencer les caractèristique du filtre.</p>
+      <p>Ce Compte Rendu ma permis d'apprendre comment mieux présenter mes résultat durant mes test comme parce exemple avec l'utilisation d'Excel pour tracer les différent diagramme de Bode</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ── Visionneur PDF ── */
+const pdfPages  = [1, 1, 1];
+const pdfFiles  = ['dossier-1.pdf', 'dossier-2.pdf', 'dossier-3.pdf'];
+
+function switchPdf(idx){
+  document.querySelectorAll('.pdf-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+  document.querySelectorAll('.pdf-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+}
+function updateFrame(idx){
+  const iframe = document.getElementById('pdf-iframe-'+idx);
+  iframe.src = pdfFiles[idx]+'#page='+pdfPages[idx];
+  document.getElementById('info-'+idx).textContent = 'Page '+pdfPages[idx];
+  document.getElementById('prev-'+idx).disabled = pdfPages[idx] <= 1;
+}
+function nextPage(idx){ pdfPages[idx]++; updateFrame(idx); }
+function prevPage(idx){ if(pdfPages[idx]>1){ pdfPages[idx]--; updateFrame(idx); } }
+</script>
+<div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="variateur-lumiere.html"><span>Variateur de lumière</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
 <div class="left"><div class="name">Tableau d'autoévaluation</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
-<p>Utilisation de l'oscilloscope, du GBF et du multimètre en laboratoire.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
-<div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
+<div class="rubric"><img src="autoeval-concevoir.png" alt="description">
 </div></details></div>
-<h4>_Outils & technos</h4>
-<div class="tags"><span>LTspice</span><span>Oscilloscope</span><span>GBF</span><span>Multimètre</span></div>
 
 
 </div></details><details><summary>
-<div class="left"><div class="name">Analyse</div><div class="short">Appliquer un procédure d'essais / Identifier un disfonctionnement & Décrire ses effets.</div></div>
+<div class="left"><div class="name">Vérifier</div><div class="short">Appliquer un procédure d'essais / Identifier un disfonctionnement & Décrire ses effets.</div></div>
 <div class="right"><span class="badge">[x]</span><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Réaliser les essais et les mesures de validation d’un système afin de vérifier son bon fonctionnement, d’évaluer ses performances et de s'assurer qu'il répond aux exigences définies lors de sa conception.</p>
@@ -225,24 +373,25 @@ footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;fo
 <p>Cette compétence se décompose également en trois sous-parties. La première consiste à mettre en œuvre une procédure d'essai afin de vérifier le comportement du système dans différentes conditions. La deuxième vise à détecter et localiser les dysfonctionnements pouvant affecter son fonctionnement. Enfin, la troisième consiste à analyser les conséquences d'un dysfonctionnement et à en décrire les effets sur les performances et le comportement du système.</p>
 <h4>_Compétences (cliquez pour déplier)</h4>
 <div class="skills"><details><summary>
-<div class="left"><div class="name">Pointeurs & allocation mémoire</div></div>
+<div class="left"><div class="name">Appliquer une procédure d'essais</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
 <p>Maîtrise des pointeurs, malloc/free, gestion fine de la mémoire.</p>
 <div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
-<div class="left"><div class="name">Structures de données</div></div>
+<div class="left"><div class="name">Identifier un disfonctionnement et le décrire</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
-<p>Structs, unions, énumérations, listes chaînées.</p>
-<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
-<div class="proj-links"><a href="project-line-follower.html"><span>Robot Suiveur de Ligne</span><span class="arr">Voir →</span></a></div>
+<p>Lorsqu'un prototype disfonctionne, il est très important de comprendre d'où vient le problème mais aussi quelle sont ces "dégâts".</p>
+<div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph"><img src="erreur1-variateur.png" alt=""></div><div class="txt"><p>Durant les test sur le variateur j'ai remarquer un disfcontionnement très problématique, par inadvertance j'ai ajouter le mauvais composant au moment de la création du comparateur pour gérer l'intensité avec le potentiométre, ce qui m'a donner value d'avoir un quatrième emplacement pour un circuit intégrer </p><p>Ce composant en plus était un MCP6541 alors que cela devait être le deuxième partie d'un MCP6022, cela à donner pour conséquence de me retrouver avec un signal inutilisable dù a se composant parasite.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
+<div class="proj-links"><a href="variateur-lumiere.html"><span>Variateur de lumière</span><span class="arr">Voir →</span></a></div>
+<div class="proj-links"><a href="borne-recharge.html"><span>Borne de recharge éléctrique</span><span class="arr">Voir →</span></a></div>
+<div class="proj-links"><a href="console-retro.html"><span>Console rétrogmaing</span><span class="arr">Voir →</span></a></div>
 </div></details><details><summary>
-<div class="left"><div class="name">Programmation Arduino</div></div>
+<div class="left"><div class="name">Tableau d'autoévaluation</div></div>
 <div class="right"><span class="chev">›</span></div>
 </summary><div class="body">
-<p>Premiers programmes embarqués sur ATmega.</p>
 <div class="rubric"><h5>_Rubrique : contexte</h5><div class="media-row"><div class="ph">[ Image — remplacez par &lt;img src="votre-photo.jpg" alt=""&gt; ]</div><div class="txt"><p>Décrivez ici ce que montre la photo : situation, manipulation, montage ou résultat. Vous pouvez dupliquer ce bloc <code>.rubric</code> autant de fois que nécessaire et changer le titre (<code>&lt;h5&gt;</code>).</p><p>Astuce : utilisez la classe <code>media-row right</code> pour mettre l'image à droite à la place.</p></div></div></div><div class="rubric"><h5>_Rubrique : résultat</h5><div class="media-row right"><div class="txt"><p>Second exemple avec image à droite. Remplacez par votre propre contenu : mesures, captures d'écran, schémas, photos de manip.</p></div><div class="ph">[ Image / capture ]</div></div></div><div class="score-bar" data-score="3"></div><h4>_Projets en rapport</h4>
 <div class="proj-links"><div class="none">› Aucun projet rattaché pour le moment</div></div>
 </div></details></div>
