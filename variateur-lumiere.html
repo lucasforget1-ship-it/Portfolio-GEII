@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Variateur de lumière — Portfolio GEII</title>
-<meta name="description" content="Carte électronique avec récepteur IR pour réguler la luminosité LED."/>
+<meta name="description" content="Carte électronique avec récepteur infrarouge pour réguler la luminosité d'une ampoule LED."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -21,105 +21,127 @@ nav.top{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-cont
 nav.top a.back{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
 nav.top a.back:hover{color:var(--accent)}
 nav.top .tag{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent)}
-/* ── bannière page intérieure ── */
-.page-banner{
-  position:relative;width:100%;height:260px;overflow:hidden;
-  margin-top:48px;/* compenser la nav fixe */
-}
-.page-banner img{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center 40%;
-  filter:brightness(.45) saturate(.7);
-}
-.page-banner::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(11,13,16,0) 0%,rgba(11,13,16,.75) 70%,rgba(11,13,16,1) 100%);
-}
-.page-banner-content{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  justify-content:flex-end;padding:0 1.5rem 2rem;
-  max-width:60rem;margin:0 auto;left:0;right:0;z-index:2;
-}
-.page-banner .crumb-top{
-  font-family:"JetBrains Mono",monospace;font-size:10px;
-  text-transform:uppercase;letter-spacing:.3em;color:var(--accent);
-  margin-bottom:.5rem;
-}
-.page-banner h1{
-  font-size:clamp(1.8rem,4vw,3rem);font-weight:800;
-  letter-spacing:-.03em;line-height:1;
-  text-shadow:0 2px 20px rgba(0,0,0,.5);
-}
-/* ── reste des styles ── */
+.page-banner{position:relative;width:100%;height:260px;overflow:hidden;margin-top:48px}
+.page-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(.45) saturate(.7)}
+.page-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,13,16,0) 0%,rgba(11,13,16,.75) 70%,rgba(11,13,16,1) 100%)}
+.page-banner-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 1.5rem 2rem;max-width:60rem;margin:0 auto;left:0;right:0;z-index:2}
+.page-banner .crumb-top{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--accent);margin-bottom:.5rem}
+.page-banner h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1;text-shadow:0 2px 20px rgba(0,0,0,.5)}
 main{padding:2.5rem 0 5rem}
-.crumb{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--accent);margin-bottom:1.5rem}
-h1.title{font-size:clamp(2rem,5vw,3.75rem);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:1.5rem}
-.summary{font-size:1.125rem;color:var(--muted);line-height:1.6;max-width:46rem;margin-bottom:3rem}
-.meta-row{display:flex;flex-wrap:wrap;gap:1rem 2rem;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:3rem;font-family:"JetBrains Mono",monospace;font-size:11px}
+.meta-row{display:flex;flex-wrap:wrap;gap:1rem 2rem;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem;font-family:"JetBrains Mono",monospace;font-size:11px}
 .meta-row .k{color:var(--muted);text-transform:uppercase;letter-spacing:.2em;margin-right:.5rem}
 .meta-row .v{color:var(--accent)}
-h2.h{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
-.hint{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.2em;margin-bottom:1rem}
-.modules{display:flex;flex-direction:column;gap:.75rem;margin-bottom:3rem}
-details{border:1px solid var(--border);border-radius:4px;background:rgba(17,21,26,.4);transition:border-color .2s}
-details[open]{border-color:var(--accent)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;gap:1rem}
-summary::-webkit-details-marker{display:none}
-summary .left{display:flex;flex-direction:column;gap:.35rem;flex:1}
-summary .name{font-size:.95rem;font-weight:500}
-summary .short{font-size:.8rem;color:var(--muted)}
-summary .right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
-summary .badge{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
-summary .chev{font-family:"JetBrains Mono",monospace;color:var(--accent);transition:transform .2s;font-size:14px}
-details[open]>summary .chev{transform:rotate(90deg)}
-.body{padding:1rem 1.25rem 1.25rem;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem;line-height:1.65}
-.body h4{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:1.25rem 0 .5rem}
-.body p{margin-bottom:.5rem}
-.body .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
-.body .tags span{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.15em;padding:.3rem .6rem;border:1px solid var(--border);border-radius:2px;color:var(--muted)}
-.video-wrap{position:relative;width:100%;aspect-ratio:16/9;margin-top:.75rem;border:1px solid var(--border);border-radius:4px;overflow:hidden;background:#000}
-.video-wrap iframe,.video-wrap video{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video-placeholder{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;text-align:center;padding:1rem}
-.skills{display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem}
-.skills details{border-radius:3px;background:rgba(11,13,16,.5)}
-.skills summary{padding:.65rem 1rem}
-.skills summary .name{font-size:.85rem}
-.skills .body{padding:.75rem 1rem 1rem;font-size:.85rem}
-.proj-links{display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem}
-.proj-links a{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border:1px solid var(--border);border-radius:3px;color:var(--fg);font-size:.85rem;transition:all .15s}
-.proj-links a:hover{border-color:var(--accent);color:var(--accent);background:rgba(58,198,255,.05)}
-.proj-links a .arr{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:11px}
-.proj-links .none{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;padding:.4rem 0}
+.stack{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+.stack span{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.15em;padding:.35rem .65rem;border:1px solid var(--border);border-radius:2px;color:var(--muted)}
+h2.h{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+
+/* ── Blocs image + texte alternés ── */
+.content-blocks{display:flex;flex-direction:column;gap:3.5rem;margin-bottom:4rem}
+.block{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.block.reverse{direction:rtl}
+.block.reverse > *{direction:ltr}
+@media(max-width:640px){.block,.block.reverse{grid-template-columns:1fr;direction:ltr}.block.reverse > *{direction:ltr}}
+.block-img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);border-radius:4px;display:block;cursor:zoom-in;transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .2s}
+.block-img:hover{transform:scale(1.02);border-color:rgba(58,198,255,.4)}
+.block-num{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--accent);margin-bottom:.75rem;display:block}
+.block-text h3{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.75rem}
+.block-text p{color:var(--muted);font-size:.95rem;line-height:1.7}
+.block-text p+p{margin-top:.5rem}
+
+/* ── Grande image finale ── */
+.final-img-wrap{margin-bottom:3rem}
+.final-img-wrap h2{margin-bottom:1.25rem}
+.final-img{width:100%;height:auto;max-height:680px;object-fit:cover;border:1px solid var(--border);border-radius:6px;display:block;cursor:zoom-in;transition:opacity .2s}
+.final-img:hover{opacity:.9}
+
 .back-link{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.25rem;border:1px solid var(--border);border-radius:2px;font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted)}
 .back-link:hover{border-color:var(--accent);color:var(--accent)}
+#lightbox{display:none;position:fixed;inset:0;z-index:200;background:rgba(7,9,12,.95);backdrop-filter:blur(8px);align-items:center;justify-content:center;cursor:zoom-out}
+#lightbox.open{display:flex}
+#lightbox img{max-width:min(92vw,1200px);max-height:90vh;object-fit:contain;border:1px solid var(--border);border-radius:4px;animation:lb-in .3s cubic-bezier(.16,1,.3,1)}
+@keyframes lb-in{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+#lightbox .lb-close{position:absolute;top:1.5rem;right:1.5rem;font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);padding:.5rem .75rem;border:1px solid var(--border);border-radius:2px;cursor:pointer;background:rgba(17,21,26,.8)}
+#lightbox .lb-close:hover{color:var(--accent);border-color:var(--accent)}
 footer{border-top:1px solid var(--border);padding:2rem 1.5rem;margin-top:4rem;font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);text-align:center}
-.rubric{margin-top:1rem;padding:1rem;border:1px solid var(--border);border-radius:3px;background:rgba(11,13,16,.4)}.rubric+.rubric{margin-top:.75rem}.rubric h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}.media-row{display:grid;grid-template-columns:minmax(140px,40%) 1fr;gap:1rem;align-items:start}.media-row.right{grid-template-columns:1fr minmax(140px,40%)}@media(max-width:560px){.media-row,.media-row.right{grid-template-columns:1fr}}.media-row img,.media-row .ph{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);border-radius:3px;background:#0b0d10;display:block}.media-row .ph{display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;text-align:center;padding:.5rem}.media-row .txt{font-size:.85rem;line-height:1.6;color:var(--muted)}.media-row .txt p+p{margin-top:.5rem}
 </style>
 </head>
 <body>
+
 <div id="toast">✓ Copié !</div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="progress-bar"></div>
+<div id="lightbox"><button class="lb-close" id="lbClose">✕ Fermer</button><img id="lbImg" src="" alt=""></div>
+
 <nav class="top"><span class="tag">Portfolio_GEII</span><a class="back" href="index.html">← Retour</a></nav>
 
 <div class="page-banner">
-  <img src="variateur-lumiere.png" alt="" onerror="this.style.display='none'">
+  <img src="variateur-lumiere.png" alt="Variateur de lumière" onerror="this.style.display='none'">
   <div class="page-banner-content container">
     <div class="crumb-top">_Projet / 2025</div>
     <h1>Variateur de lumière</h1>
   </div>
 </div>
-<main class="container"><p class="summary reveal">Robot autonome capable de suivre un tracé à haut contraste grâce à un régulateur PID et un peigne de capteurs infrarouges.</p>
-<img class="hero-img" src="project-line-follower.jpg" alt="Robot Suiveur de Ligne" onerror="this.style.display='none'">
-<div class="meta-row reveal"><div><span class="k">Année</span><span class="v">2024</span></div><div><span class="k">Domaine</span><span class="v">Régulation PID / STM32 / Capteurs IR</span></div></div>
-<h2 class="h reveal">_Détails techniques</h2>
-<ul class="details reveal"><li><span class="n">01</span><p>Conception d'un peigne de 5 capteurs IR avec conditionnement analogique pour une détection stable.</p></li><li><span class="n">02</span><p>Implémentation d'un PID discret sur STM32 avec anti-windup, réglé via Ziegler–Nichols puis affiné.</p></li><li><span class="n">03</span><p>Commande différentielle PWM sur pont en H pour une trajectoire nette à vitesse de compétition.</p></li></ul>
-<h2 class="h reveal">_Stack</h2>
-<div class="stack reveal"><span>STM32</span><span>C</span><span>PID</span><span>PWM</span><span>Altium</span></div>
-<a class="back-link reveal" href="index.html">← Retour au portfolio</a>
-</main>
-<footer>© 2026 / Portfolio_GEII</footer>
 
+<main class="container">
+
+  <div class="meta-row reveal">
+    <div><span class="k">Année</span><span class="v">2025</span></div>
+    <div><span class="k">Domaine</span><span class="v">MCP6022 / MCP6541 / Capteurs IR</span></div>
+  </div>
+
+  <div class="stack reveal"><span>IR</span><span>C</span><span>PID</span><span>PWM</span><span>Altium</span></div>
+
+  <h2 class="h reveal">_Présentation du projet</h2>
+
+  <div class="content-blocks">
+
+    <!-- ★ Bloc 1 — image à gauche, texte à droite
+         Remplace src="..." par ton image -->
+    <div class="block reveal">
+      <img class="block-img" src="votre-image-1.jpg" alt="" data-lightbox onerror="this.style.opacity='.08'">
+      <div class="block-text">
+        <span class="block-num">01</span>
+        <h3>Contexte du projet</h3>
+        <p>Décrivez ici le contexte et l'objectif du projet.</p>
+        <p>Expliquez le problème à résoudre et la solution choisie.</p>
+      </div>
+    </div>
+
+    <!-- ★ Bloc 2 — texte à gauche, image à droite -->
+    <div class="block reverse reveal">
+      <img class="block-img" src="votre-image-2.jpg" alt="" data-lightbox onerror="this.style.opacity='.08'">
+      <div class="block-text">
+        <span class="block-num">02</span>
+        <h3>Conception & réalisation</h3>
+        <p>Étapes de conception, choix des composants, contraintes techniques.</p>
+        <p>Outils utilisés et difficultés rencontrées.</p>
+      </div>
+    </div>
+
+    <!-- ★ Bloc 3 — image à gauche, texte à droite -->
+    <div class="block reveal">
+      <img class="block-img" src="votre-image-3.jpg" alt="" data-lightbox onerror="this.style.opacity='.08'">
+      <div class="block-text">
+        <span class="block-num">03</span>
+        <h3>Résultats & mesures</h3>
+        <p>Résultats obtenus, mesures, comparaison avec les objectifs.</p>
+        <p>Ce que vous avez appris et les améliorations possibles.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ★ Grande image finale — remplace src="..." -->
+  <div class="final-img-wrap reveal">
+    <h2 class="h">_Vue d'ensemble</h2>
+    <img class="final-img" src="votre-image-finale.jpg" alt="Vue d'ensemble" data-lightbox onerror="this.style.opacity='.08'">
+  </div>
+
+  <a class="back-link reveal" href="index.html">← Retour au portfolio</a>
+
+</main>
+
+<footer>© 2026 / Portfolio_GEII</footer>
 <script src="shared.js"></script>
 </body>
 </html>
